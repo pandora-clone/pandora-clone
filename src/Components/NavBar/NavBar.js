@@ -10,6 +10,7 @@ class NavBar extends Component {
         <Link to="/albums"> Albums </Link>
         <Link to="/genre"> Genre </Link>
         <Link to="/search"> Search </Link>
+        <Link to="/songs"> Songs </Link>
       </div>
     );
   }
