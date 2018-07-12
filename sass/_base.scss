@@ -1,0 +1,39 @@
+//Add your default colors here
+$font-color-primary: #4e4e4e;
+
+$font-primary: "Open Sans", sans-serif;
+$font-header: "Lora", serif;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px/16px = 62.5% -> 1 rem = 10px
+}
+
+body {
+  font-family: $font-primary;
+  color: $font-color-primary;
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: #dfdfdf;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-header;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
