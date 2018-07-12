@@ -6,6 +6,7 @@ import Artists from "./Components/Artists/Artists";
 import Albums from "./Components/Albums/Albums";
 import Genre from "./Components/Genre/Genre";
 import Search from "./Components/Search/Search";
+import Songs from "./Components/Songs/Songs";
 
 export default (
   <Switch>
@@ -14,5 +15,6 @@ export default (
     <Route path="/albums" component={Albums} />
     <Route path="/genre" component={Genre} />
     <Route path="/search" component={Search} />
+    <Route path="/songs" component={Songs} />
   </Switch>
 );
