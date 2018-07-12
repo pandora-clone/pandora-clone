@@ -54,4 +54,66 @@ a {
 .category-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; }
+  justify-content: center;
+  margin-top: 10vh; }
+
+.category {
+  margin-top: 10.5vh;
+  margin-left: 7.5vw; }
+
+input {
+  position: absolute;
+  font-size: 2vh;
+  border-radius: 10px;
+  margin-left: 20vw; }
+
+.topNavContainer {
+  background-color: #2b2b2b;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  z-index: 5; }
+
+.loginButton {
+  font-size: 2vh;
+  margin-left: 70vw; }
+
+.profileButton {
+  padding: 3vh;
+  border-radius: 50px; }
+
+.displayName {
+  font-size: 2vh;
+  color: white; }
+
+.sideNavContainer {
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 9.7vh;
+  align-items: center;
+  padding-top: 5vh;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  padding-bottom: 70vh;
+  z-index: 5; }
+
+.logo {
+  position: absolute;
+  top: -12vh;
+  padding: 5vh;
+  border-radius: 50px; }
+
+h6 {
+  color: white; }
+
+.navItemsContainer {
+  margin-top: -5vh;
+  display: flex;
+  flex-direction: column; }
+
+.sideNavItems {
+  font-size: 2vh; }

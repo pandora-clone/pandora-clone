@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import TopNavBar from "./Components/NavBar/TopNavBar";
+import SideNavBar from "./Components/NavBar/SideNavBar";
 import routes from "./routes";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import store from "./redux/store";
 import "./App.css";
-import NavBar from "./Components/NavBar/NavBar";
+// import NavBar from "./Components/NavBar/NavBar";
+
 
 class App extends Component {
   render() {
@@ -13,7 +16,8 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <NavBar />
+            <TopNavBar />
+            <SideNavBar />
             {routes}
           </div>
         </BrowserRouter>
