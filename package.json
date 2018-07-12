@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "watch": "node-sass sass/main.scss src/App.css",
+    "watch": "node-sass sass/main.scss src/App.css -w",
     "compile:sass": "node-sass sass/main.scss src/App.css"
   }
 }
