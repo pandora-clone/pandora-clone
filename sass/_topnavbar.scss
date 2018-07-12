@@ -1,0 +1,22 @@
+.topNavContainer{
+    /* border: 3px solid teal; */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+}
+.loginButton{
+    font-size: 2vh;
+    margin-left: 70vw;
+}
+.profileButton{
+    padding: 4vh;
+    border-radius: 50px;
+}
+.username{
+    /* margin-left: 80vw; */
+    font-size: 2vh;
+    color: white;
+}

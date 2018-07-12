@@ -57,7 +57,7 @@ class Home extends Component {
 
   getNewReleases = () => {
     spotifyApi.getNewReleases().then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         newReleases: response.albums.items
       });
@@ -93,7 +93,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state.loggedIn);
+    // console.log(this.state.loggedIn);
     const newReleasesToDisplay = this.state.newReleases.map((song, i) => {
       return (
         <div key={i}>
@@ -128,7 +128,6 @@ class Home extends Component {
 
     return (
       <div>
-        <a href="http://localhost:8888/login"> Login to Spotify </a>
         {/* <div>Now Playing: {this.state.name}</div>
         <div>
           <img
