@@ -3,18 +3,6 @@ import SpotifyWebApi from "spotify-web-api-js";
 const spotifyApi = new SpotifyWebApi();
 
 class Search extends Component {
-<<<<<<< HEAD
-    constructor(props){
-      super(props);
-      this.state = {
-          searchParams: ''
-
-      }
-  }
-  setStateHandler = e => {
-    this.setState({searchParams: e.target.value})
-  };
-=======
   constructor() {
     super();
     this.state = {
@@ -22,7 +10,6 @@ class Search extends Component {
     };
   }
   search = () => {};
->>>>>>> master
   render() {
     const {searchParams} = this.state;
     return (

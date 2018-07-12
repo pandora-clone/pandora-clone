@@ -97,12 +97,8 @@ class Home extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    // console.log(this.state.loggedIn);
-=======
     console.log(this.state.loggedIn);
 
->>>>>>> master
     const newReleasesToDisplay = this.state.newReleases.map((song, i) => {
       return (
         <div key={i}>
@@ -138,21 +134,7 @@ class Home extends Component {
     console.log(this.state.categories);
     return (
       <div>
-<<<<<<< HEAD
-        {/* <div>Now Playing: {this.state.name}</div>
-        <div>
-          <img
-            src={this.state.albumArt}
-            style={{ height: 150 }}
-            alt={this.state.name}
-          />
-        </div> */}
-
-        {/* {playlistToDisplay} */}
-=======
-        <button onClick={() => this.getCategories()}>Get Categories</button>
-        <a href="http://localhost:8888/login"> Login to Spotify </a>
->>>>>>> master
+        <button className="category"onClick={() => this.getCategories()}>Get Categories</button>
 
         {this.state.loggedIn && (
           <button onClick={() => this.getNowPlaying()}>

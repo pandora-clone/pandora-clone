@@ -12,7 +12,7 @@ class TopNavBar extends Component {
             <div className="topNavContainer">
                     <a href="http://localhost:8888/login"><button className="loginButton">Login</button></a>
                     <button className="profileButton"></button>
-                    <span className="username">Display Name</span>
+                    <span className="displayName">Display Name</span>
             </div>
         );
     }

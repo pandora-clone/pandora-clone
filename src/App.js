@@ -13,25 +13,15 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-<<<<<<< HEAD
-      <BrowserRouter>
-        <div className="App">
-        <TopNavBar />
-        <SideNavBar />
-          {/* <NavBar /> */}
-          {routes}
-        </div>
-      </BrowserRouter>
-=======
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <NavBar />
+            <TopNavBar />
+            <SideNavBar />
             {routes}
           </div>
         </BrowserRouter>
       </Provider>
->>>>>>> master
     );
   }
 }

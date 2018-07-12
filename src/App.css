@@ -28,67 +28,6 @@ a {
   text-decoration: none;
   color: inherit; }
 
-<<<<<<< HEAD
-input {
-  position: absolute;
-  font-size: 2vh;
-  border-radius: 10px;
-  margin-left: 20vw; }
-
-.topNavContainer {
-  /* border: 3px solid teal; */
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  position: fixed;
-  width: 100vw; }
-
-.loginButton {
-  font-size: 2vh;
-  margin-left: 70vw; }
-
-.profileButton {
-  padding: 4vh;
-  border-radius: 50px; }
-
-.username {
-  /* margin-left: 80vw; */
-  font-size: 2vh;
-  color: white; }
-
-.sideNavContainer {
-  /* border: 3px solid red; */
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 10vh;
-  align-items: center;
-  padding-top: 5vh;
-  padding-left: 1.5vw;
-  padding-right: 1.5vw;
-  padding-bottom: 64.8vh; }
-
-.logo {
-  position: absolute;
-  top: -12vh;
-  padding: 5vh;
-  border-radius: 50px; }
-
-h6 {
-  /* margin-top: 10vh; */
-  color: white; }
-
-.navItemsContainer {
-  margin-top: -5vh;
-  display: flex;
-  flex-direction: column; }
-
-.sideNavItems {
-  font-size: 2vh;
-  /* position: relative; */ }
-=======
 .home-image-container {
   position: relative;
   text-align: center;
@@ -115,5 +54,66 @@ h6 {
 .category-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; }
->>>>>>> master
+  justify-content: center;
+  margin-top: 10vh; }
+
+.category {
+  margin-top: 10.5vh;
+  margin-left: 7.5vw; }
+
+input {
+  position: absolute;
+  font-size: 2vh;
+  border-radius: 10px;
+  margin-left: 20vw; }
+
+.topNavContainer {
+  background-color: #2b2b2b;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  z-index: 5; }
+
+.loginButton {
+  font-size: 2vh;
+  margin-left: 70vw; }
+
+.profileButton {
+  padding: 3vh;
+  border-radius: 50px; }
+
+.displayName {
+  font-size: 2vh;
+  color: white; }
+
+.sideNavContainer {
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 9.7vh;
+  align-items: center;
+  padding-top: 5vh;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  padding-bottom: 70vh;
+  z-index: 5; }
+
+.logo {
+  position: absolute;
+  top: -12vh;
+  padding: 5vh;
+  border-radius: 50px; }
+
+h6 {
+  color: white; }
+
+.navItemsContainer {
+  margin-top: -5vh;
+  display: flex;
+  flex-direction: column; }
+
+.sideNavItems {
+  font-size: 2vh; }

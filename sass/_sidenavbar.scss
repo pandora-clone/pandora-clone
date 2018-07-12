@@ -1,16 +1,17 @@
 .sideNavContainer{
-    /* border: 3px solid red; */
-    background-color: rgba(0, 0, 0, 0.5);
+    // border: 3px solid red;
+    background-color: #2b2b2b;
     display: flex;
     // float: left;
     flex-direction: column;
     position: fixed;
-    top: 10vh;
+    top: 9.7vh;
     align-items: center;
     padding-top: 5vh;
     padding-left: 1.5vw;
     padding-right: 1.5vw;
-    padding-bottom: 64.8vh;
+    padding-bottom: 70vh;
+    z-index: 5;
 }
 .logo{
     position: absolute;
@@ -19,7 +20,7 @@
     border-radius: 50px;
 }
 h6{
-    /* margin-top: 10vh; */
+    // margin-top: 10vh;
     color: white;
 }
 .navItemsContainer{
@@ -29,5 +30,5 @@ h6{
 }
 .sideNavItems{
     font-size: 2vh;
-    /* position: relative; */
+    // position: relative;
 }
