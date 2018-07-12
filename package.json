@@ -29,5 +29,6 @@
     "eject": "react-scripts eject",
     "watch": "node-sass sass/main.scss src/App.css -w",
     "compile:sass": "node-sass sass/main.scss src/App.css"
-  }
+  },
+  "proxy": "http://localhost:8888"
 }
