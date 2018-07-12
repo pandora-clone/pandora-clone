@@ -1,0 +1,30 @@
+.home-image-container {
+  position: relative;
+  text-align: center;
+  margin: 10px;
+  width: 200px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.2rem rgb(27, 27, 27));
+}
+
+.category-text {
+  position: absolute;
+  color: white;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.161);
+}
+.home-image-container:hover {
+  filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315));
+  .category-text {
+    color: white;
+    background-color: $hover-category-text-color;
+  }
+}
+.category-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

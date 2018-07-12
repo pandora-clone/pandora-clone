@@ -13,12 +13,14 @@ class Home extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
+      categories: {},
       name: "Not Checked",
       albumArt: "",
       songs: [],
       playlist: [],
       newReleases: []
     };
+    this.getCategories = this.getCategories.bind(this);
   }
   getHashParams() {
     var hashParams = {};
@@ -63,11 +65,12 @@ class Home extends Component {
       });
     });
   };
-  getCategories = () => {
+  getCategories() {
     spotifyApi.getCategories().then(response => {
-      console.log(response);
+      console.log("Categories", response.categories.items);
+      this.setState({ categories: response.categories.items });
     });
-  };
+  }
 
   getTracks = () => {
     spotifyApi.searchTracks("gravity").then(response => {
@@ -90,10 +93,16 @@ class Home extends Component {
 
   componentDidMount() {
     this.getNewReleases();
+    this.getCategories();
   }
 
   render() {
+<<<<<<< HEAD
     // console.log(this.state.loggedIn);
+=======
+    console.log(this.state.loggedIn);
+
+>>>>>>> master
     const newReleasesToDisplay = this.state.newReleases.map((song, i) => {
       return (
         <div key={i}>
@@ -103,15 +112,15 @@ class Home extends Component {
         </div>
       );
     });
-    // const playlistToDisplay = this.state.playlist.map((song, i) => {
-    //   return (
-    //     <div key={i}>
-    //       <p>
-    //         {song.track.name} by {song.track.artists[0].name}
-    //       </p>
-    //     </div>
-    //   );
-    // });
+    const playlistToDisplay = this.state.playlist.map((song, i) => {
+      return (
+        <div key={i}>
+          <p>
+            {song.track.name} by {song.track.artists[0].name}
+          </p>
+        </div>
+      );
+    });
     const songsToDisplay = this.state.songs.map((song, i) => {
       return (
         <div key={i}>
@@ -126,8 +135,10 @@ class Home extends Component {
       );
     });
 
+    console.log(this.state.categories);
     return (
       <div>
+<<<<<<< HEAD
         {/* <div>Now Playing: {this.state.name}</div>
         <div>
           <img
@@ -138,6 +149,10 @@ class Home extends Component {
         </div> */}
 
         {/* {playlistToDisplay} */}
+=======
+        <button onClick={() => this.getCategories()}>Get Categories</button>
+        <a href="http://localhost:8888/login"> Login to Spotify </a>
+>>>>>>> master
 
         {this.state.loggedIn && (
           <button onClick={() => this.getNowPlaying()}>
@@ -145,15 +160,23 @@ class Home extends Component {
           </button>
         )}
 
-        {this.state.loggedIn && (
-          <button onClick={() => this.getTracks()}>Get Song</button>
-        )}
-        {this.state.loggedIn && (
-          <button onClick={() => this.getMe()}>Get Test</button>
-        )}
-        {newReleasesToDisplay}
-
-        {songsToDisplay}
+        <div className="category-wrapper">
+          {this.state.categories[0] &&
+            this.state.categories.map((category, i) => {
+              return (
+                <div className="home-image-container" key={i}>
+                  <img
+                    src={category.icons[0].url}
+                    style={{ width: "100%" }}
+                    alt=""
+                  />
+                  <div className="category-text">
+                    <h2>{category.name}</h2>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
       </div>
     );
   }
