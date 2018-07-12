@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { HashRouter } from 'react-router-dom';
-import TopNavBar from "./components/Navbar/TopNavBar";
-import SideNavBar from "./components/Navbar/SideNavBar";
+import TopNavBar from "./Components/NavBar/TopNavBar";
+import SideNavBar from "./Components/NavBar/SideNavBar";
 import routes from "./routes";
 import { BrowserRouter } from "react-router-dom";
 
@@ -14,6 +14,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+        <TopNavBar />
+        <SideNavBar />
           <NavBar />
           {routes}
         </div>
