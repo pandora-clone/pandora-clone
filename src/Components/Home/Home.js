@@ -60,7 +60,7 @@ class Home extends Component {
 
   getNewReleases = () => {
     spotifyApi.getNewReleases().then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         newReleases: response.albums.items
       });
@@ -135,8 +135,7 @@ class Home extends Component {
 
     return (
       <div>
-        <button onClick={() => this.getCategories()}>Get Categories</button>
-        <a href="http://localhost:8888/login"> Login to Spotify </a>
+        <button className="category"onClick={() => this.getCategories()}>Get Categories</button>
 
         {this.state.loggedIn && (
           <button onClick={() => this.getNowPlaying()}>
