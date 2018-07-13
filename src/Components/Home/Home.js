@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import SpotifyWebApi from "spotify-web-api-js";
-const spotifyApi = new SpotifyWebApi();
 
+const spotifyApi = new SpotifyWebApi();
 class Home extends Component {
   constructor() {
     super();
@@ -53,13 +53,13 @@ class Home extends Component {
   // };
   getMe = () => {
     spotifyApi.getMe().then(response => {
-      console.log(response);
+      // console.log(response);
     });
   };
 
   getNewReleases = () => {
     spotifyApi.getNewReleases().then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         newReleases: response.albums.items
       });
@@ -67,14 +67,14 @@ class Home extends Component {
   };
   getCategories() {
     spotifyApi.getCategories().then(response => {
-      console.log("Categories", response.categories.items);
+      // console.log("Categories", response.categories.items);
       this.setState({ categories: response.categories.items });
     });
   }
 
   getTracks = () => {
     spotifyApi.searchTracks("gravity").then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         songs: response.tracks.items
       });
@@ -83,7 +83,7 @@ class Home extends Component {
 
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState().then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         name: response.item.name,
         albumArt: response.item.album.images[0].url
@@ -131,7 +131,7 @@ class Home extends Component {
       );
     });
 
-    console.log(this.state.categories);
+    // console.log(this.state.categories);
     return (
       <div>
         <button onClick={() => this.getCategories()}>Get Categories</button>
