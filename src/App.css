@@ -55,3 +55,28 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
+
+.track-play-inner {
+  position: absolute;
+  text-align: center;
+  font-size: 25px;
+  background-color: black;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  color: white;
+  padding-top: 13px;
+  margin-left: 80px;
+  bottom: 80px;
+  opacity: 0; }
+
+.track-play-inner:hover {
+  opacity: 0.8;
+  animation-name: fade-in;
+  animation-duration: 0.5s; }
+
+@keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 0.8; } }
