@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import SpotifyWebApi from "spotify-web-api-js";
-const spotifyApi = new SpotifyWebApi();
 
+const spotifyApi = new SpotifyWebApi();
 class Home extends Component {
   constructor() {
     super();
@@ -54,7 +54,7 @@ class Home extends Component {
   // };
   getMe = () => {
     spotifyApi.getMe().then(response => {
-      console.log(response);
+      // console.log(response);
     });
   };
 
@@ -76,7 +76,7 @@ class Home extends Component {
 
   getTracks = () => {
     spotifyApi.searchTracks("gravity").then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         songs: response.tracks.items
       });
@@ -85,7 +85,7 @@ class Home extends Component {
 
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState().then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         name: response.item.name,
         albumArt: response.item.album.images[0].url
@@ -135,7 +135,9 @@ class Home extends Component {
 
     return (
       <div>
-        <button className="category"onClick={() => this.getCategories()}>Get Categories</button>
+        <button className="category" onClick={() => this.getCategories()}>
+          Get Categories
+        </button>
 
         {this.state.loggedIn && (
           <button onClick={() => this.getNowPlaying()}>
