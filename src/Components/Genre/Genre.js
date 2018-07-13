@@ -1,41 +1,60 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 const spotifyApi = new SpotifyWebApi();
 
 class Genre extends Component {
-    constructor(){
-      super();
-      this.state = {
-        genre: []
-      }
-    }
-    getGenre = () => {
-    spotifyApi.getAvailableGenreSeeds().then(response => {
-      console.log(response);
-      // this.setState({
-      //   genre: response
-      // })
-      });
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: null,
+      playList: null
     };
-    componentDidMount() {
-      this.getGenre();
-    }
-
-    render() {
-      // console.log(this.state)
-    const displayGenre = this.state.genre.map((genre, i) => {
-      return (
-        <div key={i}>
-          <img src={genre.images[1].url} alt={genre.name} />
-
-          <p>{genre.name}</p>
-        </div>
-      );
-    });
-      return (
-        <div>text</div>
-      )
-    }
+    this.getCategory = this.getCategory.bind(this);
   }
+
+  componentDidMount() {
+    const { categoryName } = this.props.match.params;
+    this.setState(
+      {
+        category: categoryName
+      },
+      () => this.getCategory()
+    );
+  }
+
+  getCategory() {
+    spotifyApi.getCategoryPlaylists(this.state.category).then(response => {
+      this.setState({
+        playList: response.playlists.items
+      });
+    });
+  }
+  render() {
+    return (
+      <div>
+        <div className="category-wrapper">
+          {this.state.playList &&
+            this.state.playList.map((playlist, i) => {
+              return (
+                <div className="home-image-container" key={i}>
+                  <Link to={"/playlist/" + playlist.id}>
+                    <img
+                      src={playlist.images[0].url}
+                      style={{ width: "100%" }}
+                      alt=""
+                    />
+                  </Link>
+                  <div className="category-text">
+                    <h2>{playlist.name}</h2>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Genre;

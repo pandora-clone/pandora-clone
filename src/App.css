@@ -3,18 +3,21 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; }
+  box-sizing: inherit;
+}
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; }
+  font-size: 62.5%;
+}
 
 body {
   font-family: "Open Sans", sans-serif;
   color: white;
   font-weight: 400;
   line-height: 1.6;
-  background-color: #4e4e4e; }
+  background-color: #4e4e4e;
+}
 
 h1,
 h2,
@@ -22,11 +25,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lora", serif; }
+  font-family: "Lora", serif;
+}
 
 a {
   text-decoration: none;
-  color: inherit; }
+  color: inherit;
+}
 
 .home-image-container {
   position: relative;
@@ -34,7 +39,8 @@ a {
   margin: 10px;
   width: 200px;
   cursor: pointer;
-  filter: drop-shadow(0 0 0.2rem #1b1b1b); }
+  filter: drop-shadow(0 0 0.2rem #1b1b1b);
+}
 
 .category-text {
   position: absolute;
@@ -43,29 +49,35 @@ a {
   width: 100%;
   text-align: center;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.161); }
+  background-color: rgba(255, 255, 255, 0.161);
+}
 
 .home-image-container:hover {
-  filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315)); }
-  .home-image-container:hover .category-text {
-    color: white;
-    background-color: #0c7d4373; }
+  filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315));
+}
+.home-image-container:hover .category-text {
+  color: white;
+  background-color: #0c7d4373;
+}
 
 .category-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10vh; }
+  margin-top: 10vh;
+}
 
 .category {
   margin-top: 10.5vh;
-  margin-left: 7.5vw; }
+  margin-left: 7.5vw;
+}
 
 input {
   position: absolute;
   font-size: 2vh;
   border-radius: 10px;
-  margin-left: 20vw; }
+  margin-left: 20vw;
+}
 
 .topNavContainer {
   background-color: #2b2b2b;
@@ -74,19 +86,23 @@ input {
   align-items: center;
   position: fixed;
   width: 100vw;
-  z-index: 5; }
+  z-index: 5;
+}
 
 .loginButton {
   font-size: 2vh;
-  margin-left: 70vw; }
+  margin-left: 70vw;
+}
 
 .profileButton {
   padding: 3vh;
-  border-radius: 50px; }
+  border-radius: 50px;
+}
 
 .displayName {
   font-size: 2vh;
-  color: white; }
+  color: white;
+}
 
 .sideNavContainer {
   background-color: #2b2b2b;
@@ -99,21 +115,26 @@ input {
   padding-left: 1.5vw;
   padding-right: 1.5vw;
   padding-bottom: 70vh;
-  z-index: 5; }
+  z-index: 5;
+}
 
 .logo {
   position: absolute;
   top: -12vh;
   padding: 5vh;
-  border-radius: 50px; }
+  border-radius: 50px;
+}
 
 h6 {
-  color: white; }
+  color: white;
+}
 
 .navItemsContainer {
   margin-top: -5vh;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+}
 
 .sideNavItems {
-  font-size: 2vh; }
+  font-size: 2vh;
+}
