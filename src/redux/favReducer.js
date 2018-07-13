@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export function getFavList(user_id) {
-  console.log(user_id);
+  // console.log(user_id);
   return {
     type: GET_FAV_LIST,
     payload: axios.get(`/api/fav/${user_id}`)
@@ -30,7 +30,7 @@ export function addFavList(user_id, song_name, artist_name, img, preview_url) {
 }
 
 export function deleteFavList(id) {
-  console.log(id);
+  // console.log(id);
   return {
     type: DELETE_FAV_LIST,
     payload: axios.delete(`/api/fav/${id}`)
@@ -38,8 +38,8 @@ export function deleteFavList(id) {
 }
 
 export default function favReducer(state = initialState, action) {
-  console.log(action.type);
-  console.log("payload!!!   ", action.payload);
+  // console.log(action.type);
+  // console.log("payload!!!   ", action.payload);
   switch (action.type) {
     // get favList
     case "GET_FAV_LIST_PENDING":
