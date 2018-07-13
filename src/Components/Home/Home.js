@@ -135,13 +135,6 @@ class Home extends Component {
     return (
       <div>
         <button className="category"onClick={() => this.getCategories()}>Get Categories</button>
-
-        {this.state.loggedIn && (
-          <button onClick={() => this.getNowPlaying()}>
-            Check Now Playing
-          </button>
-        )}
-
         <div className="category-wrapper">
           {this.state.categories[0] &&
             this.state.categories.map((category, i) => {

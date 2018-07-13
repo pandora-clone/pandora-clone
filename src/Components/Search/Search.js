@@ -11,17 +11,16 @@ class Search extends Component {
   }
   search = () => {};
   render() {
-    const {searchParams} = this.state;
+    const {searchTerm} = this.state;
     return (
       <div>
         <input
             placeholder="Search here..."
-            value={searchParams}
+            value={searchTerm}
             onChange={(e) => this.setStateHandler(e)}
             type="text"
-            name="searchParams"
+            name="searchTerm"
         />
-        this is Search page
       </div>
     );
   }
