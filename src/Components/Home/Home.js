@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import SpotifyWebApi from "spotify-web-api-js";
 
@@ -65,9 +66,10 @@ class Home extends Component {
       });
     });
   };
+
   getCategories() {
-    spotifyApi.getCategories().then(response => {
-      // console.log("Categories", response.categories.items);
+    spotifyApi.getCategories({ limit: 40 }).then(response => {
+      console.log("Categories", response.categories.items);
       this.setState({ categories: response.categories.items });
     });
   }
@@ -131,11 +133,11 @@ class Home extends Component {
       );
     });
 
-    // console.log(this.state.categories);
     return (
       <div>
-        <button onClick={() => this.getCategories()}>Get Categories</button>
-        <a href="http://localhost:8888/login"> Login to Spotify </a>
+        <button className="category" onClick={() => this.getCategories()}>
+          Get Categories
+        </button>
 
         {this.state.loggedIn && (
           <button onClick={() => this.getNowPlaying()}>
@@ -148,11 +150,13 @@ class Home extends Component {
             this.state.categories.map((category, i) => {
               return (
                 <div className="home-image-container" key={i}>
-                  <img
-                    src={category.icons[0].url}
-                    style={{ width: "100%" }}
-                    alt=""
-                  />
+                  <Link to={"/genre/" + category.id}>
+                    <img
+                      src={category.icons[0].url}
+                      style={{ width: "100%" }}
+                      alt=""
+                    />
+                  </Link>
                   <div className="category-text">
                     <h2>{category.name}</h2>
                   </div>

@@ -1,0 +1,23 @@
+.topNavContainer{
+    // border: 3px solid teal;
+    background-color: #2b2b2b;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    z-index: 5;
+}
+.loginButton{
+    font-size: 2vh;
+    margin-left: 70vw;
+}
+.profileButton{
+    padding: 3vh;
+    border-radius: 50px;
+}
+.displayName{
+    // margin-left: 80vw;
+    font-size: 2vh;
+    color: white;
+}
