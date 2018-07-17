@@ -7,7 +7,6 @@ const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 const massive = require("massive");
 const session = require("express-session");
-const passport = require("passport");
 const port = process.env.PORT || 8888;
 
 const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
@@ -55,9 +54,6 @@ app.use(
       }
   })
 );
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
