@@ -7,13 +7,13 @@ const spotifyApi = new SpotifyWebApi();
 class Home extends Component {
   constructor() {
     super();
-    const params = this.getHashParams();
-    const token = params.access_token;
-    if (token) {
-      spotifyApi.setAccessToken(token);
-    }
+    // const params = this.getHashParams();
+    // const token = params.access_token;
+    // if (token) {
+    //   spotifyApi.setAccessToken(token);
+    // }
     this.state = {
-      loggedIn: token ? true : false,
+      // loggedIn: token ? true : false,
       categories: {},
       name: "Not Checked",
       albumArt: "",
@@ -23,18 +23,18 @@ class Home extends Component {
     };
     this.getCategories = this.getCategories.bind(this);
   }
-  getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    e = r.exec(q);
-    while (e) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-      e = r.exec(q);
-    }
-    return hashParams;
-  }
+  // getHashParams() {
+  //   var hashParams = {};
+  //   var e,
+  //     r = /([^&;=]+)=?([^&;]*)/g,
+  //     q = window.location.hash.substring(1);
+  //   e = r.exec(q);
+  //   while (e) {
+  //     hashParams[e[1]] = decodeURIComponent(e[2]);
+  //     e = r.exec(q);
+  //   }
+  //   return hashParams;
+  // }
 
   // getPlaylist = () => {
   //   spotifyApi
@@ -52,11 +52,11 @@ class Home extends Component {
   //     console.log(response);
   //   });
   // };
-  getMe = () => {
-    spotifyApi.getMe().then(response => {
-      // console.log(response);
-    });
-  };
+  // getMe = () => {
+  //   spotifyApi.getMe().then(response => {
+  //     // console.log(response);
+  //   });
+  // };
 
   getNewReleases = () => {
     spotifyApi.getNewReleases().then(response => {

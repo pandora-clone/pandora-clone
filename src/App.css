@@ -45,6 +45,11 @@ a {
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.161); }
 
+.category-text h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
 .home-image-container:hover {
   filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315)); }
   .home-image-container:hover .category-text {
@@ -56,7 +61,7 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 10vh;
-  margin-left: 5vw; }
+  margin-left: 8vw; }
 
 .category {
   margin-top: 10.5vh;
@@ -91,6 +96,18 @@ input {
   padding: 2px 4px;
   margin-top: 11vh;
   margin-left: 20vw; }
+
+.searchButton {
+  font-size: 2vh;
+  background-color: #a3a3a3;
+  border: 2px solid #a3a3a3;
+  padding: 2px 4px;
+  border-radius: 30px;
+  transition-duration: 0.5s;
+  cursor: pointer; }
+
+.searchButton:hover {
+  background-color: white; }
 
 .track-play-inner {
   position: absolute;
@@ -129,7 +146,7 @@ input {
   width: 100vw;
   z-index: 5; }
 
-.loginButton {
+.loginLogout {
   font-size: 2vh;
   background-color: #a3a3a3;
   border: 2px solid #a3a3a3;
@@ -138,12 +155,12 @@ input {
   transition-duration: 0.5s;
   cursor: pointer; }
 
-.loginButton:hover {
+.loginLogout:hover {
   background-color: white; }
 
 .profileButton {
   margin: 0 15px;
-  padding: 3vh;
+  padding: 2vh;
   border-radius: 50px; }
 
 .displayName {
@@ -155,21 +172,21 @@ input {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 35px;
+  top: 5vh;
   justify-content: center;
   z-index: 5; }
 
 .logo {
   font-size: 2vh;
   position: absolute;
-  top: -25px;
-  left: 13px;
+  top: -2.5vh;
+  left: 1.5vw;
   padding: 3vh;
   border-radius: 50px; }
 
 .sideNavContainer {
   background-color: #2b2b2b;
-  padding-top: 20px;
+  padding-top: 6vh;
   padding-bottom: 800px;
   display: flex;
   flex-direction: column;

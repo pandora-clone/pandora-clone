@@ -15,6 +15,11 @@
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.161);
 }
+.category-text h2{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .home-image-container:hover {
   filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315));
   .category-text {
@@ -27,7 +32,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 10vh;
-  margin-left: 5vw;
+  margin-left: 8vw;
 }
 .category{
   margin-top: 10.5vh;
