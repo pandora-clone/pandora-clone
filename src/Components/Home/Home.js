@@ -69,7 +69,7 @@ class Home extends Component {
 
   getCategories() {
     spotifyApi.getCategories({ limit: 40 }).then(response => {
-      console.log("Categories", response.categories.items);
+      // console.log("Categories", response.categories.items);
       this.setState({ categories: response.categories.items });
     });
   }
@@ -99,7 +99,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state.loggedIn);
+    // console.log(this.state.loggedIn);
 
     const newReleasesToDisplay = this.state.newReleases.map((song, i) => {
       return (

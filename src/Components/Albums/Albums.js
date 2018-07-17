@@ -27,13 +27,23 @@ class Albums extends Component {
     const albumsToDisplay = this.state.albums.map((album, i) => {
       return (
         <div key={i}>
-          <img src={album.images[1].url} />
-
-          <p> {album.artists[0].name}</p>
+          <div className="albumImage">
+            <img
+            src={album.images[1].url}
+            style={{ width: "100%" }}
+            />
+          </div>
+          <div className="albumName">
+            <span>{album.artists[0].name}</span>
+          </div>
         </div>
       );
     });
-    return <div>{albumsToDisplay}</div>;
+    return (
+      <div className="albumWrapper">
+        {albumsToDisplay}
+      </div>
+    );
   }
 }
 

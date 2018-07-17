@@ -55,7 +55,8 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10vh; }
+  margin-top: 10vh;
+  margin-left: 5vw; }
 
 .category {
   margin-top: 10.5vh;
@@ -64,7 +65,8 @@ a {
 .songs-container {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  margin: 40px; }
 
 .songs-img-container {
   position: relative;
@@ -78,10 +80,16 @@ a {
   flex-wrap: wrap;
   justify-content: center; }
 
+.search-wrapper {
+  margin-top: 20px;
+  margin-left: 150px; }
+
 input {
-  position: absolute;
   font-size: 2vh;
+  border: none;
   border-radius: 10px;
+  padding: 2px 4px;
+  margin-top: 11vh;
   margin-left: 20vw; }
 
 .track-play-inner {
@@ -114,48 +122,98 @@ input {
   padding: 5px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   z-index: 5; }
 
 .loginButton {
   font-size: 2vh;
-  margin-left: 70vw; }
+  background-color: #a3a3a3;
+  border: 2px solid #a3a3a3;
+  padding: 2px 4px;
+  border-radius: 30px;
+  transition-duration: 0.5s;
+  cursor: pointer; }
+
+.loginButton:hover {
+  background-color: white; }
 
 .profileButton {
+  margin: 0 15px;
   padding: 3vh;
   border-radius: 50px; }
 
 .displayName {
+  margin-right: 5vw;
   font-size: 2vh;
   color: white; }
 
-.sideNavContainer {
-  background-color: #2b2b2b;
+.sideBarContainer {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 9.7vh;
-  align-items: center;
-  padding-top: 5vh;
-  padding-left: 1.5vw;
-  padding-right: 1.5vw;
-  padding-bottom: 70vh;
+  top: 35px;
+  justify-content: center;
   z-index: 5; }
 
 .logo {
+  font-size: 2vh;
   position: absolute;
-  top: -12vh;
-  padding: 5vh;
+  top: -25px;
+  left: 13px;
+  padding: 3vh;
   border-radius: 50px; }
 
-h6 {
+.sideNavContainer {
+  background-color: #2b2b2b;
+  padding-top: 20px;
+  padding-bottom: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.search {
+  font-size: 2vh; }
+
+.sort {
+  margin-top: 10px;
   color: white; }
 
 .navItemsContainer {
-  margin-top: -5vh;
   display: flex;
   flex-direction: column; }
 
 .sideNavItems {
-  font-size: 2vh; }
+  margin-top: 2vh;
+  font-size: 2vh;
+  color: #a3a3a3;
+  padding: 1.5vh 1.5 vw;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw; }
+
+.sideNavItems:hover {
+  color: white;
+  background-color: #0c7d4373; }
+
+.albumWrapper {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10vh;
+  margin-left: 10vw; }
+
+.albumImage {
+  position: relative;
+  text-align: center;
+  margin: 10px;
+  width: 200px;
+  cursor: pointer; }
+
+.albumName {
+  display: flex;
+  align-items: center;
+  justify-content: center; }

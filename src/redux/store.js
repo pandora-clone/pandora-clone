@@ -2,10 +2,12 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import promiseMiddleware from "redux-promise-middleware";
 
 import favReducer from "./favReducer";
+import rctPlayedReducer from "./rctPlayedReducer";
 
 const store = createStore(
   combineReducers({
-    favList: favReducer
+    favReducer,
+    rctPlayedReducer
   }),
   applyMiddleware(promiseMiddleware())
 );

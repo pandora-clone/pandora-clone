@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import SpotifyWebApi from "spotify-web-api-js";
 
 import { getFavList, deleteFavList } from "../../redux/favReducer";
+import { getRctPlayed } from "../../redux/rctPlayedReducer";
 const spotifyApi = new SpotifyWebApi();
 
 class Songs extends Component {
   constructor() {
     super();
     this.state = {
-      user_id: 0
+      user_id: 0,
+      rctList: []
     };
   }
 
@@ -17,7 +19,7 @@ class Songs extends Component {
     spotifyApi
       .getMe()
       .then(response => {
-        console.log(response.id);
+        // console.log(response.id);
         this.setState({
           user_id: response.id
         });
@@ -27,13 +29,46 @@ class Songs extends Component {
       });
   };
 
+  getRctList = () => {
+    console.log(this.props.rctPlayedReducer.rctPlayedList.rctPlayedList);
+    spotifyApi
+      .getTracks(this.props.rctPlayedReducer.rctPlayedList.rctPlayedList, {
+        limit: 15
+      })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          rctList: response.tracks
+        });
+      });
+  };
+
   componentDidMount() {
     this.getMe();
+    let { rctPlayedList } = this.props.rctPlayedReducer.rctPlayedList;
+    rctPlayedList && this.getRctList();
   }
   render() {
-    console.log(this.props);
-    // this is from our database
-    const favListToDisplay = this.props.favList.map(favSong => {
+    console.log("song page props: ", this.props.rctPlayedReducer.rctPlayedList);
+    console.log(this.state);
+    const rctListToDisplay = this.state.rctList.map(song => {
+      return (
+        <div key={song.id}>
+          <p>{song.name}</p>
+          <img
+            className="songs-img-container"
+            src={song.album.images[0].url}
+            alt={song.name}
+            // style={{ width: "100%" }}
+          />
+          <audio controls className="songs-player-bar">
+            <source src={song.preview_url} type="audio/mpeg" />
+          </audio>
+        </div>
+      );
+    });
+
+    const favListToDisplay = this.props.favReducer.favList.map(favSong => {
       return (
         <div key={favSong.id}>
           <p>{favSong.song_name}</p>
@@ -64,14 +99,15 @@ class Songs extends Component {
         <h2>Your favorite List</h2>
         <div className="fav-songs-container">{favListToDisplay}</div>
         <h2>Recently played</h2>
+        {rctListToDisplay}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => state.favList;
+const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getFavList, deleteFavList }
+  { getFavList, deleteFavList, getRctPlayed }
 )(Songs);

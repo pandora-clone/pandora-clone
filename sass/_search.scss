@@ -1,6 +1,14 @@
-input{
-    position: absolute;
-    font-size: 2vh;
-    border-radius: 10px;
-    margin-left: 20vw;
+.search-wrapper {
+  margin-top: 20px;
+  margin-left: 150px;
+}
+
+input {
+  // position: absolute;
+  font-size: 2vh;
+  border: none;
+  border-radius: 10px;
+  padding: 2px 4px;
+  margin-top: 11vh;
+  margin-left: 20vw;
 }
