@@ -6,6 +6,8 @@ const { json } = require("body-parser");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 const massive = require("massive");
+const session = require("express-session");
+const passport = require("passport");
 const port = process.env.PORT || 8888;
 
 const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
@@ -43,6 +45,20 @@ app.use(cors());
 app.use(cookieParser());
 app.use(json());
 
+app.use(
+  session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+          maxAge: 1000000
+      }
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 massive(process.env.CONNECTION_STRING)
   .then(db => {
     console.log("database is connecting");
@@ -69,6 +85,12 @@ app.get("/login", function(req, res) {
         state: state
       })
   );
+});
+
+app.get("/logout", function(req, res) {
+  req.session.destroy(() => {
+  res.redirect('http://localhost:3000/')
+  })
 });
 
 app.get("/callback", function(req, res) {
