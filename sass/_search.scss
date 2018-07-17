@@ -1,21 +1,21 @@
-input{
-    // position: absolute;
-    font-size: 2vh;
-    border: none;
-    border-radius: 10px;
-    padding: 2px 4px;
-    margin-top: 11vh;
-    margin-left: 20vw;
+input {
+  // position: absolute;
+  font-size: 2vh;
+  border: none;
+  border-radius: 10px;
+  padding: 2px 4px;
+  margin-top: 11vh;
+  margin-left: 20vw;
 }
-.searchButton{
-    font-size: 2vh;
-    background-color: rgb(163, 163, 163);
-    border: 2px solid rgb(163, 163, 163);
-    padding: 2px 4px;
-    border-radius: 30px;
-    transition-duration: 0.5s;
-    cursor: pointer;
+.searchButton {
+  font-size: 2vh;
+  background-color: rgb(163, 163, 163);
+  border: 2px solid rgb(163, 163, 163);
+  padding: 2px 4px;
+  border-radius: 30px;
+  transition-duration: 0.5s;
+  cursor: pointer;
 }
-.searchButton:hover{
-    background-color: rgb(255, 255, 255);
+.searchButton:hover {
+  background-color: rgb(255, 255, 255);
 }

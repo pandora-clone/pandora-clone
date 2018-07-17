@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import SpotifyWebApi from "spotify-web-api-js";
 
 import { addFavList } from "../../redux/favReducer";
+import { addRctPlayed } from "../../redux/rctPlayedReducer";
 
 const spotifyApi = new SpotifyWebApi();
 class Search extends Component {
@@ -141,6 +142,7 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    addFavList
+    addFavList,
+    addRctPlayed
   }
 )(Search);
