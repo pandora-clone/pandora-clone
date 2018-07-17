@@ -126,7 +126,7 @@ class Search extends Component {
           value={this.state.searchTerm}
           onChange={this.handleInputChange}
         />
-        <button onClick={this.search}>Search</button>
+        <button className="searchButton" onClick={this.search}>Search</button>
         <div className="searched-tracks">{searchTracksToDisplay}</div>
         <div className="searched-albums">{searchAlbumsToDisplay}</div>
         <div className="searched-artists">{searchArtistsToDisplay}</div>
