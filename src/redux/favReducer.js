@@ -16,7 +16,16 @@ export function getFavList(user_id) {
   };
 }
 
-export function addFavList(user_id, song_name, artist_name, img, preview_url) {
+export function addFavList(
+  user_id,
+  song_name,
+  artist_name,
+  img,
+  preview_url,
+  album_id,
+  artist_id,
+  track_id
+) {
   return {
     type: ADD_FAV_LIST,
     payload: axios.post("/api/fav/new", {
@@ -24,7 +33,10 @@ export function addFavList(user_id, song_name, artist_name, img, preview_url) {
       song_name,
       artist_name,
       img,
-      preview_url
+      preview_url,
+      album_id,
+      artist_id,
+      track_id
     })
   };
 }
