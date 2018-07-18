@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { auth, database } from "../../firebase/firebase";
+import pick from "lodash/pick";
 
 import SpotifyWebApi from "spotify-web-api-js";
 
@@ -7,6 +9,8 @@ const spotifyApi = new SpotifyWebApi();
 class Home extends Component {
   constructor() {
     super();
+    this.usersRef = null;
+    this.userRef = null;
     // const params = this.getHashParams();
     // const token = params.access_token;
     // if (token) {
@@ -19,8 +23,12 @@ class Home extends Component {
       albumArt: "",
       songs: [],
       playlist: [],
-      newReleases: []
+      newReleases: [],
+      user: null,
+      users: {}
     };
+
+    this.usersRef = database.ref("/users");
     this.getCategories = this.getCategories.bind(this);
   }
   // getHashParams() {
@@ -52,11 +60,33 @@ class Home extends Component {
   //     console.log(response);
   //   });
   // };
-  // getMe = () => {
-  //   spotifyApi.getMe().then(response => {
-  //     // console.log(response);
-  //   });
-  // };
+  getMe = () => {
+    spotifyApi.getMe().then(response => {
+      console.log(response);
+
+      // database
+      //   .ref()
+      //   .child(response.id)
+      //   .push(response.id);
+
+      // if (response) {
+      //   this.setState({
+      //     user: response
+      //   });
+      //   this.usersRef = database.ref("/users");
+      //   this.userRef = this.usersRef.child(this.state.user.id);
+
+      //   this.userRef.once("value").then(snapshot => {
+      //     if (snapshot.val()) return;
+      //     const userData = pick(response, ["id", "display_name", "email"]);
+      //     this.userRef.set(pick(userData));
+      //   });
+      //   this.usersRef.on("value", snapshot => {
+      //     this.setState({ users: snapshot.val() });
+      //   });
+      // }
+    });
+  };
 
   getNewReleases = () => {
     spotifyApi.getNewReleases().then(response => {
@@ -69,7 +99,7 @@ class Home extends Component {
 
   getCategories() {
     spotifyApi.getCategories({ limit: 40 }).then(response => {
-      console.log("Categories", response.categories.items);
+      // console.log("Categories", response.categories.items);
       this.setState({ categories: response.categories.items });
     });
   }
@@ -96,6 +126,10 @@ class Home extends Component {
   componentDidMount() {
     this.getNewReleases();
     this.getCategories();
+    this.getMe();
+    database.ref().on("value", snapshot => {
+      console.log("Data Has Changed", snapshot.val());
+    });
   }
 
   render() {
