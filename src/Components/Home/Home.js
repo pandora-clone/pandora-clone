@@ -9,15 +9,15 @@ const spotifyApi = new SpotifyWebApi();
 class Home extends Component {
   constructor() {
     super();
-    const params = this.getHashParams();
-    const token = params.access_token;
-    if (token) {
-      spotifyApi.setAccessToken(token);
-    }
     this.usersRef = null;
     this.userRef = null;
+    // const params = this.getHashParams();
+    // const token = params.access_token;
+    // if (token) {
+    //   spotifyApi.setAccessToken(token);
+    // }
     this.state = {
-      loggedIn: token ? true : false,
+      // loggedIn: token ? true : false,
       categories: {},
       name: "Not Checked",
       albumArt: "",
@@ -31,18 +31,18 @@ class Home extends Component {
     this.usersRef = database.ref("/users");
     this.getCategories = this.getCategories.bind(this);
   }
-  getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    e = r.exec(q);
-    while (e) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-      e = r.exec(q);
-    }
-    return hashParams;
-  }
+  // getHashParams() {
+  //   var hashParams = {};
+  //   var e,
+  //     r = /([^&;=]+)=?([^&;]*)/g,
+  //     q = window.location.hash.substring(1);
+  //   e = r.exec(q);
+  //   while (e) {
+  //     hashParams[e[1]] = decodeURIComponent(e[2]);
+  //     e = r.exec(q);
+  //   }
+  //   return hashParams;
+  // }
 
   // getPlaylist = () => {
   //   spotifyApi
@@ -99,7 +99,7 @@ class Home extends Component {
 
   getCategories() {
     spotifyApi.getCategories({ limit: 40 }).then(response => {
-      console.log("Categories", response.categories.items);
+      // console.log("Categories", response.categories.items);
       this.setState({ categories: response.categories.items });
     });
   }
@@ -133,7 +133,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state.loggedIn);
+    // console.log(this.state.loggedIn);
 
     const newReleasesToDisplay = this.state.newReleases.map((song, i) => {
       return (

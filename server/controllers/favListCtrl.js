@@ -5,7 +5,7 @@ const getFavList = (req, res, next) => {
     .get("db")
     .get_favList(id)
     .then(response => {
-      console.log("response from favList: ", response);
+      // console.log("response from favList: ", response);
       res.status(200).json(response);
     })
     .catch(error => console.log(error));

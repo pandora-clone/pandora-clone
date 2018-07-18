@@ -11,22 +11,21 @@
     width: 100vw;
     z-index: 5;
 }
-.loginButton{
+.loginLogout{
     font-size: 2vh;
     background-color: rgb(163, 163, 163);
     border: 2px solid rgb(163, 163, 163);
-
     padding: 2px 4px;
     border-radius: 30px;
     transition-duration: 0.5s;
     cursor: pointer;
 }
-.loginButton:hover{
+.loginLogout:hover{
     background-color: rgb(255, 255, 255);
 }
 .profileButton{
     margin: 0 15px;
-    padding: 3vh;
+    padding: 2vh;
     border-radius: 50px;
 }
 .displayName{

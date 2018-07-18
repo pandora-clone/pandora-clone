@@ -6,17 +6,23 @@ const { json } = require("body-parser");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 const massive = require("massive");
+const session = require("express-session");
 const port = process.env.PORT || 8888;
 
 const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
 const redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
 
+const checkForSession = require(`${__dirname}/middlewares/checkForSession`);
 const {
   getFavList,
   addFavList,
   deleteFavList
 } = require(`${__dirname}/controllers/favListCtrl`);
+const {
+  getRctPlay,
+  addRctPlayed
+} = require(`${__dirname}/controllers/rctPlayedCtrl`);
 
 /**
  * Generates a random string containing numbers and letters
@@ -42,6 +48,28 @@ app.use(express.static(__dirname + "/public"));
 app.use(cors());
 app.use(cookieParser());
 app.use(json());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+  })
+);
+app.use(checkForSession);
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000000
+    }
+  })
+);
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
@@ -69,6 +97,12 @@ app.get("/login", function(req, res) {
         state: state
       })
   );
+});
+
+app.get("/logout", function(req, res) {
+  req.session.destroy(() => {
+    res.redirect("http://localhost:3000/");
+  });
 });
 
 app.get("/callback", function(req, res) {
@@ -170,6 +204,10 @@ app.get("/refresh_token", function(req, res) {
 app.get("/api/fav/:id", getFavList);
 app.post("/api/fav/new", addFavList);
 app.delete("/api/fav/:id", deleteFavList);
+
+//recently played
+app.get("/api/recent", getRctPlay);
+app.post("/api/recent", addRctPlayed);
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

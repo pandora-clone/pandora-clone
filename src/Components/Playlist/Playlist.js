@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
+import { connect } from "react-redux";
+import { addRctPlayed } from "../../redux/rctPlayedReducer";
 const spotifyApi = new SpotifyWebApi();
 
 class Playlist extends Component {
@@ -15,7 +17,7 @@ class Playlist extends Component {
     this.getPlaylistTracks = this.getPlaylistTracks.bind(this);
   }
 
-  playAudio(previewUrl) {
+  playAudio(previewUrl, trackId) {
     let audio = new Audio(previewUrl);
     if (!this.state.playing) {
       audio.play();
@@ -36,6 +38,7 @@ class Playlist extends Component {
         this.setState({ playing: true, playingUrl: previewUrl, audio });
       }
     }
+    this.props.addRctPlayed(trackId);
   }
 
   componentDidMount() {
@@ -57,6 +60,8 @@ class Playlist extends Component {
   }
 
   render() {
+    // console.log(this.props);
+    // console.log(this.state);
     return (
       <div>
         <div className="category-wrapper">
@@ -67,7 +72,9 @@ class Playlist extends Component {
                   <div
                     className="home-image-container"
                     key={i}
-                    onClick={() => this.playAudio(track.track.preview_url)}
+                    onClick={() =>
+                      this.playAudio(track.track.preview_url, track.track.id)
+                    }
                   >
                     <img
                       src={track.track.album.images[0].url}
@@ -97,4 +104,9 @@ class Playlist extends Component {
     );
   }
 }
-export default Playlist;
+
+const mapStateToProps = state => state;
+export default connect(
+  mapStateToProps,
+  { addRctPlayed }
+)(Playlist);

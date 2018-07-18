@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import SpotifyWebApi from "spotify-web-api-js";
 
 import { addFavList } from "../../redux/favReducer";
+import { addRctPlayed } from "../../redux/rctPlayedReducer";
 
 const spotifyApi = new SpotifyWebApi();
 class Search extends Component {
@@ -127,7 +128,7 @@ class Search extends Component {
           value={this.state.searchTerm}
           onChange={this.handleInputChange}
         />
-        <button onClick={this.search}>Search</button>
+        <button className="searchButton" onClick={this.search}>Search</button>
         <div className="searched-tracks">{searchTracksToDisplay}</div>
         <div className="searched-albums">{searchAlbumsToDisplay}</div>
         <div className="searched-artists">{searchArtistsToDisplay}</div>
@@ -142,6 +143,7 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    addFavList
+    addFavList,
+    addRctPlayed
   }
 )(Search);
