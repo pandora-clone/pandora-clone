@@ -8,6 +8,8 @@ import Genre from "./Components/Genre/Genre";
 import Search from "./Components/Search/Search";
 import Songs from "./Components/Songs/Songs";
 import Playlist from "./Components/Playlist/Playlist";
+import UsersSongs from "./Components/UsersSongs/UsersSongs";
+import AddSong from "./Components/AddSong/AddSong";
 
 export default (
   <Switch>
@@ -17,6 +19,8 @@ export default (
     <Route path="/genre/:categoryName" component={Genre} />
     <Route path="/playlist/:playListId" component={Playlist} />
     <Route path="/search" component={Search} />
+    <Route path="/usersongs" component={UsersSongs} />
+    <Route path="/addsong" component={AddSong} />
     <Route path="/songs" component={Songs} />
   </Switch>
 );

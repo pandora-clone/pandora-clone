@@ -124,6 +124,7 @@ class Search extends Component {
     return (
       <div className="search-wrapper">
         <input
+          className="searchInput"
           value={this.state.searchTerm}
           onChange={this.handleInputChange}
         />
