@@ -29,9 +29,12 @@ class AddSong extends Component {
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.chooseCategory = this.chooseCategory.bind(this);
     this.addSong = this.addSong.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async onImageDrop(file) {
+    const acceptedImageFormats = ["jpg", "png", "jpeg"];
+    const acceptedAudioFormats = ["mp3"];
     let that = this;
     switch (file[0].type) {
       case "image/jpeg":
@@ -64,7 +67,7 @@ class AddSong extends Component {
             console.log(typeof downloadURL);
             console.log("File available at", downloadURL);
 
-            if (downloadURL.includes("jpg" || "png")) {
+            if (acceptedImageFormats.some(el => downloadURL.includes(el))) {
               that.setState({ imageUrl: downloadURL });
             } else {
               that.setState({ songUrl: downloadURL });
