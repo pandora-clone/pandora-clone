@@ -29,6 +29,7 @@ class AddSong extends Component {
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.chooseCategory = this.chooseCategory.bind(this);
     this.addSong = this.addSong.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async onImageDrop(file) {
@@ -64,7 +65,7 @@ class AddSong extends Component {
             console.log(typeof downloadURL);
             console.log("File available at", downloadURL);
 
-            if (downloadURL.includes("jpg" || "png")) {
+            if (downloadURL.includes("jpg" || "png" || "jpeg")) {
               that.setState({ imageUrl: downloadURL });
             } else {
               that.setState({ songUrl: downloadURL });
