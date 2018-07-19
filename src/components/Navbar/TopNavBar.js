@@ -1,58 +1,15 @@
 import React, { Component } from "react";
-import SpotifyWebApi from "spotify-web-api-js";
 import { connect } from "react-redux";
 
 import { getUser } from "../../redux/userReducer";
 
-const spotifyApi = new SpotifyWebApi();
-
 class TopNavBar extends Component {
-  constructor() {
-    super();
-    const params = this.getHashParams();
-    const token = params.access_token;
-    if (token) {
-      spotifyApi.setAccessToken(token);
-    }
-    this.state = {
-      loggedIn: token ? true : false,
-      showMenu: false
-    };
-    this.showMenu = this.showMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-  }
-
-  showMenu(e) {
-    e.preventDefault();
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener("click", this.closeMenu);
-    });
-  }
-
-  closeMenu() {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener("click", this.closeMenu);
-    });
-  }
-  getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    e = r.exec(q);
-    while (e) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-      e = r.exec(q);
-    }
-    return hashParams;
-  }
   render() {
-    console.log(this.state.loggedIn);
     console.log(this.props);
     return (
       <div className="topNavContainer">
         {/* <button onClick={this.props.getUser}>Check users</button> */}
-        {this.state.loggedIn ? (
+        {this.props.user.user_id ? (
           <a href="http://localhost:8888/logout">
             <button
               className="loginLogout"
@@ -79,7 +36,7 @@ class TopNavBar extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => state.userReducer;
 
 export default connect(
   mapStateToProps,

@@ -206,9 +206,8 @@ app.get("/api/recent", getRctPlay);
 app.post("/api/recent", addRctPlayed);
 
 //users
-app.get("/api/users", getUser);
+app.get("/api/user", getUser);
 app.post("/api/login", login);
-// app.post("/api/register", register);
 app.post("/api/logout", logout);
 
 app.listen(port, () => {

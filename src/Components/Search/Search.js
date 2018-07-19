@@ -97,7 +97,7 @@ class Search extends Component {
           <div key={i}>
             <img src={track.album.images[0].url} alt={track.name} />
             <h3>{track.name}</h3>
-            <audio controls>
+            <audio onClick={() => this.props.addRctPlayed(track.id)} controls>
               <source src={track.preview_url} type="audio/mpeg" />
             </audio>
 
