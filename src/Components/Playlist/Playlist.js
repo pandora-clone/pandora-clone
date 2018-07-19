@@ -26,6 +26,7 @@ class Playlist extends Component {
         playingUrl: previewUrl,
         audio
       });
+      this.props.addRctPlayed(trackId);
     } else {
       if (this.state.playingUrl === previewUrl) {
         this.state.audio.pause();
@@ -38,7 +39,6 @@ class Playlist extends Component {
         this.setState({ playing: true, playingUrl: previewUrl, audio });
       }
     }
-    this.props.addRctPlayed(trackId);
   }
 
   componentDidMount() {

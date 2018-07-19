@@ -45,6 +45,7 @@ class Artist extends Component {
         <div key={i}>
           <h1>{artist.name}</h1>
           <img src={artist.images[0].url} alt={artist.name} />
+          <p>followers: {artist.followers.total}</p>
         </div>
       );
     });

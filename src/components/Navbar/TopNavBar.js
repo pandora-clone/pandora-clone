@@ -30,7 +30,7 @@ class TopNavBar extends Component {
           </a>
         )}
         <button className="profileButton" />
-        <span className="displayName">Display Name</span>
+        <span className="displayName">{this.props.user.username}</span>
       </div>
     );
   }
