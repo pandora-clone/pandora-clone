@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 
 import { addFavList } from "../../redux/favReducer";
@@ -15,12 +16,13 @@ class Search extends Component {
       searchArtists: [],
       searchPlaylist: [],
       searchTracks: [],
-      user_id: null
+      user_id: null,
+      refs: ""
     };
   }
 
   handleInputChange = e => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       searchTerm: e.target.value
     });
@@ -28,7 +30,7 @@ class Search extends Component {
 
   getMe = () => {
     spotifyApi.getMe().then(response => {
-      console.log(response.id);
+      // console.log(response.id);
       this.setState({
         user_id: response.id
       });
@@ -40,22 +42,53 @@ class Search extends Component {
         limit: 10
       })
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           searchAlbums: response.albums.items,
           searchArtists: response.artists.items,
           searchPlaylist: response.playlists.items,
-          searchTracks: response.tracks.items
+          searchTracks: response.tracks.items,
+          playingUrl: "",
+          audio: null,
+          playing: false
         });
       });
   };
 
   componentDidMount() {
     this.getMe();
+    // this.search();
+  }
+
+  playAudio(previewUrl, trackId) {
+    let audio = new Audio(previewUrl);
+    if (!this.state.playing) {
+      audio.play();
+      this.setState({
+        playing: true,
+        playingUrl: previewUrl,
+        audio
+      });
+      this.props.addRctPlayed(trackId);
+    } else {
+      if (this.state.playingUrl === previewUrl) {
+        this.state.audio.pause();
+        this.setState({
+          playing: false
+        });
+      } else {
+        this.state.audio.pause();
+        audio.play();
+        this.setState({
+          playingUrl: previewUrl,
+          audio
+        });
+      }
+    }
   }
 
   render() {
-    console.log("check here", this.props);
+    // console.log("check here", this.props);
     console.log("search state", this.state);
     const searchAlbumsToDisplay = this.state.searchAlbums
       .filter(album => album.images[0])
@@ -72,7 +105,7 @@ class Search extends Component {
         return artist.images[0];
       })
       .map(artist => {
-        console.log(typeof artist.images[0].url);
+        // console.log(typeof artist.images[0].url);
         return (
           <div key={artist.id}>
             <img src={artist.images[0].url} alt={artist.name} />
@@ -85,8 +118,10 @@ class Search extends Component {
       .map(playlist => {
         return (
           <div key={playlist.id}>
-            <img src={playlist.images[0].url} alt={playlist.name} />
-            <h3>{playlist.name}</h3>
+            <Link to={"/playlist/" + playlist.id}>
+              <img src={playlist.images[0].url} alt={playlist.name} />
+              <h3>{playlist.name}</h3>
+            </Link>
           </div>
         );
       });
@@ -94,12 +129,21 @@ class Search extends Component {
       .filter(track => track.album.images[0] && track.preview_url !== null)
       .map((track, i) => {
         return (
-          <div key={i}>
+          <div
+            key={i}
+            onClick={() => this.playAudio(track.preview_url, track.id)}
+          >
             <img src={track.album.images[0].url} alt={track.name} />
+            {/* <div className="track-play"> */}
+            <div className="track-play-inner">
+              {this.state.playingUrl === track.preview_url ? (
+                <span>| |</span>
+              ) : (
+                <span>&#9654;</span>
+              )}
+            </div>
+            {/* </div> */}
             <h3>{track.name}</h3>
-            <audio onClick={() => this.props.addRctPlayed(track.id)} controls>
-              <source src={track.preview_url} type="audio/mpeg" />
-            </audio>
 
             <button
               onClick={() =>
@@ -130,22 +174,39 @@ class Search extends Component {
         <button className="searchButton" onClick={this.search}>
           Search
         </button>
-        <h1> TRACKS </h1>
-        <div className="searched-tracks result-box">
-          {searchTracksToDisplay}
-        </div>
-        <h1> ALBUMS </h1>
-        <div className="searched-albums result-box">
-          {searchAlbumsToDisplay}
-        </div>
-        <h1> ARTISTS</h1>
-        <div className="searched-artists result-box">
-          {searchArtistsToDisplay}
-        </div>
-        <h1>PLAYLISTS</h1>
-        <div className="searched-playlists result-box">
-          {searchPlaylistToDisplay}
-        </div>
+        {this.state.searchTracks[0] ? (
+          <div>
+            <h1> TRACKS </h1>
+            <div className="searched-tracks result-box">
+              {searchTracksToDisplay}
+            </div>
+          </div>
+        ) : null}
+        {this.state.searchAlbums[0] ? (
+          <div>
+            <h1> ALBUMS </h1>
+            <div className="searched-albums result-box">
+              {searchAlbumsToDisplay}
+            </div>
+          </div>
+        ) : null}
+        {this.state.searchArtists[0] ? (
+          <div>
+            <h1> ARTISTS</h1>
+            <div className="searched-artists result-box">
+              {searchArtistsToDisplay}
+            </div>
+          </div>
+        ) : null}
+
+        {this.state.searchPlaylist[0] ? (
+          <div>
+            <h1>PLAYLISTS</h1>
+            <div className="searched-playlists result-box">
+              {searchPlaylistToDisplay}
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }

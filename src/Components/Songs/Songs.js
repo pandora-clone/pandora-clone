@@ -28,6 +28,31 @@ class Songs extends Component {
         this.props.getFavList(this.state.user_id);
       });
   };
+  playAudio(previewUrl) {
+    let audio = new Audio(previewUrl);
+    if (!this.state.playing) {
+      audio.play();
+      this.setState({
+        playing: true,
+        playingUrl: previewUrl,
+        audio
+      });
+    } else {
+      if (this.state.playingUrl === previewUrl) {
+        this.state.audio.pause();
+        this.setState({
+          playing: false
+        });
+      } else {
+        this.state.audio.pause();
+        audio.play();
+        this.setState({
+          playingUrl: previewUrl,
+          audio
+        });
+      }
+    }
+  }
 
   getRctList = () => {
     console.log(this.props.rctPlayedReducer.rctPlayedList.rctPlayedList);
@@ -54,34 +79,46 @@ class Songs extends Component {
     console.log("songs page:", this.props);
     const rctListToDisplay = this.state.rctList.map((song, i) => {
       return (
-        <div key={i}>
-          <p>{song.name}</p>
+        <div key={i} onClick={() => this.playAudio(song.preview_url)}>
+          <div className="track-play">
+            <div className="track-play-inner">
+              {this.state.playingUrl === song.preview_url ? (
+                <span>| |</span>
+              ) : (
+                <span>&#9654;</span>
+              )}
+            </div>
+          </div>
           <img
             className="songs-img-container"
             src={song.album.images[0].url}
             alt={song.name}
             // style={{ width: "100%" }}
           />
-          <audio controls className="songs-player-bar">
-            <source src={song.preview_url} type="audio/mpeg" />
-          </audio>
+          <p>{song.name}</p>
         </div>
       );
     });
 
-    const favListToDisplay = this.props.favReducer.favList.map(favSong => {
+    const favListToDisplay = this.props.favReducer.favList.map((favSong, i) => {
       return (
-        <div key={favSong.id}>
-          <p>{favSong.song_name}</p>
+        <div key={i} onClick={() => this.playAudio(favSong.preview_url)}>
+          <div className="track-play">
+            <div className="track-play-inner">
+              {this.state.playingUrl === favSong.preview_url ? (
+                <span>| |</span>
+              ) : (
+                <span>&#9654;</span>
+              )}
+            </div>
+          </div>
           <img
             className="songs-img-container"
             src={favSong.img}
             alt={favSong.song_name}
             // style={{ width: "100%" }}
           />
-          <audio controls className="songs-player-bar">
-            <source src={favSong.preview_url} type="audio/mpeg" />
-          </audio>
+          <p>{favSong.song_name}</p>
           <button
             onClick={() =>
               this.props
@@ -98,9 +135,9 @@ class Songs extends Component {
     return (
       <div className="songs-container">
         <h2>Your favorite List</h2>
-        <div className="fav-songs-container">{favListToDisplay}</div>
+        <div className="sub-songs-container">{favListToDisplay}</div>
         <h2>Recently played</h2>
-        {rctListToDisplay}
+        <div className="sub-songs-container"> {rctListToDisplay}</div>
       </div>
     );
   }
