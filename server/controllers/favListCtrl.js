@@ -1,5 +1,4 @@
 const getFavList = (req, res, next) => {
-  console.log("req params", req.params);
   const { id } = req.params;
   req.app
     .get("db")
