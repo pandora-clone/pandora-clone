@@ -13,7 +13,8 @@ const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
 const redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
 
-const checkForSession = require(`${__dirname}/middlewares/checkForSession`);
+const checkForPlayList = require(`${__dirname}/middlewares/checkForPlayList`);
+const checkForUser = require(`${__dirname}/middlewares/checkForUser`);
 const {
   getFavList,
   addFavList,
@@ -23,7 +24,12 @@ const {
   getRctPlay,
   addRctPlayed
 } = require(`${__dirname}/controllers/rctPlayedCtrl`);
-
+const {
+  login,
+  // register,
+  getUser,
+  logout
+} = require(`${__dirname}/controllers/userCtrl`);
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -58,7 +64,8 @@ app.use(
     }
   })
 );
-app.use(checkForSession);
+app.use(checkForPlayList);
+app.use(checkForUser);
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
@@ -197,6 +204,11 @@ app.delete("/api/fav/:id", deleteFavList);
 //recently played
 app.get("/api/recent", getRctPlay);
 app.post("/api/recent", addRctPlayed);
+
+//users
+app.get("/api/user", getUser);
+app.post("/api/login", login);
+app.post("/api/logout", logout);
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

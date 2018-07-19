@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/userReducer";
+import { getFavList } from "../../redux/favReducer";
 
 import SpotifyWebApi from "spotify-web-api-js";
 const spotifyApi = new SpotifyWebApi();
@@ -10,41 +13,56 @@ class Albums extends Component {
       albums: []
     };
   }
-
+  componentDidMount() {
+    this.props
+      .getFavList(this.props.userReducer.user.user_id)
+      .then(() => this.getAlbums());
+  }
   getAlbums = () => {
-    spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(response => {
+    const albumIds =
+      this.props.favReducer.favList &&
+      this.props.favReducer.favList.map((song, i) => {
+        if (song.album_id !== null) {
+          return song.album_id;
+        } else {
+          return null;
+        }
+      });
+    console.log("albumIds: ", albumIds);
+
+    spotifyApi.getAlbums(albumIds).then(response => {
       console.log(response);
       this.setState({
-        albums: response.items
+        albums: response.albums
       });
     });
   };
-  componentDidMount() {
-    this.getAlbums();
-  }
 
   render() {
+    console.log(this.props);
     const albumsToDisplay = this.state.albums.map((album, i) => {
       return (
         <div key={i}>
           <div className="albumImage">
             <img
-            src={album.images[1].url}
-            style={{ width: "100%" }}
+              src={album.images[1].url}
+              style={{ width: "100%" }}
+              alt={album.name}
             />
           </div>
           <div className="albumName">
-            <span>{album.artists[0].name}</span>
+            <span>{album.name}</span>
           </div>
         </div>
       );
     });
-    return (
-      <div className="albumWrapper">
-        {albumsToDisplay}
-      </div>
-    );
+    return <div className="albumWrapper">{albumsToDisplay}</div>;
   }
 }
 
-export default Albums;
+const mapStateToProps = state => state;
+
+export default connect(
+  mapStateToProps,
+  { getUser, getFavList }
+)(Albums);
