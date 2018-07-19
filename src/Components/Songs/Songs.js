@@ -51,9 +51,10 @@ class Songs extends Component {
   render() {
     console.log("song page props: ", this.props.rctPlayedReducer.rctPlayedList);
     console.log(this.state);
-    const rctListToDisplay = this.state.rctList.map(song => {
+    console.log("songs page:", this.props);
+    const rctListToDisplay = this.state.rctList.map((song, i) => {
       return (
-        <div key={song.id}>
+        <div key={i}>
           <p>{song.name}</p>
           <img
             className="songs-img-container"

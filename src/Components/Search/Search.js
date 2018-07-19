@@ -63,7 +63,7 @@ class Search extends Component {
         return (
           <div key={album.id}>
             <img src={album.images[0].url} alt={album.name} />
-            <p>{album.name}</p>
+            <h3>{album.name}</h3>
           </div>
         );
       });
@@ -76,9 +76,7 @@ class Search extends Component {
         return (
           <div key={artist.id}>
             <img src={artist.images[0].url} alt={artist.name} />
-
-            <p>{artist.name}</p>
-            <img src={artist.images[0].url} />
+            <h3>{artist.name}</h3>
           </div>
         );
       });
@@ -88,20 +86,18 @@ class Search extends Component {
         return (
           <div key={playlist.id}>
             <img src={playlist.images[0].url} alt={playlist.name} />
-
-            <p>{playlist.name}</p>
+            <h3>{playlist.name}</h3>
           </div>
         );
       });
     const searchTracksToDisplay = this.state.searchTracks
-      .filter(track => track.album.images[0])
-      .map(track => {
+      .filter(track => track.album.images[0] && track.preview_url !== null)
+      .map((track, i) => {
         return (
-          <div key={track.id}>
+          <div key={i}>
             <img src={track.album.images[0].url} alt={track.name} />
-
-            <p>{track.name}</p>
-            <audio controls>
+            <h3>{track.name}</h3>
+            <audio onClick={() => this.props.addRctPlayed(track.id)} controls>
               <source src={track.preview_url} type="audio/mpeg" />
             </audio>
 
@@ -112,7 +108,10 @@ class Search extends Component {
                   track.name,
                   track.artists[0].name,
                   track.album.images[0].url,
-                  track.preview_url
+                  track.preview_url,
+                  track.album.id,
+                  track.album.artists[0].id,
+                  track.id
                 )
               }
             >
@@ -128,11 +127,25 @@ class Search extends Component {
           value={this.state.searchTerm}
           onChange={this.handleInputChange}
         />
-        <button className="searchButton" onClick={this.search}>Search</button>
-        <div className="searched-tracks">{searchTracksToDisplay}</div>
-        <div className="searched-albums">{searchAlbumsToDisplay}</div>
-        <div className="searched-artists">{searchArtistsToDisplay}</div>
-        <div className="searched-playlists">{searchPlaylistToDisplay}</div>
+        <button className="searchButton" onClick={this.search}>
+          Search
+        </button>
+        <h1> TRACKS </h1>
+        <div className="searched-tracks result-box">
+          {searchTracksToDisplay}
+        </div>
+        <h1> ALBUMS </h1>
+        <div className="searched-albums result-box">
+          {searchAlbumsToDisplay}
+        </div>
+        <h1> ARTISTS</h1>
+        <div className="searched-artists result-box">
+          {searchArtistsToDisplay}
+        </div>
+        <h1>PLAYLISTS</h1>
+        <div className="searched-playlists result-box">
+          {searchPlaylistToDisplay}
+        </div>
       </div>
     );
   }

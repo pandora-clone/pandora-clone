@@ -12,10 +12,28 @@ const getFavList = (req, res, next) => {
 };
 
 const addFavList = (req, res, next) => {
-  const { user_id, song_name, artist_name, img, preview_url } = req.body;
+  const {
+    user_id,
+    song_name,
+    artist_name,
+    img,
+    preview_url,
+    album_id,
+    artist_id,
+    track_id
+  } = req.body;
   req.app
     .get("db")
-    .add_favList([user_id, song_name, artist_name, img, preview_url])
+    .add_favList([
+      user_id,
+      song_name,
+      artist_name,
+      img,
+      preview_url,
+      album_id,
+      artist_id,
+      track_id
+    ])
     .then(response => res.status(200).json(response))
     .catch(error => console.log(error));
 };
