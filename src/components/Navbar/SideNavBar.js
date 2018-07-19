@@ -26,7 +26,7 @@ class SideNavBar extends Component {
             <Link to="/songs" className="sideNavItems">
               Songs
             </Link>
-            <Link to="/genre" className="sideNavItems">
+            <Link to="/genre/:categoryName" className="sideNavItems">
               Genre
             </Link>
             <Link to="/usersongs" className="sideNavItems">
