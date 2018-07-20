@@ -43,13 +43,13 @@ class Artist extends Component {
     const artistToDisplay = this.state.artists.map((artist, i) => {
       return (
         <div key={i}>
-          <h1>{artist.name}</h1>
-          <img src={artist.images[0].url} alt={artist.name} />
-          <p>followers: {artist.followers.total}</p>
+          <h1 className="artistName">{artist.name}</h1>
+          <img className="artistImage" src={artist.images[0].url} alt={artist.name} />
+          <p className="artistFollowers">followers: {artist.followers.total}</p>
         </div>
       );
     });
-    return <div>{artistToDisplay}</div>;
+    return <div className="artistWrapper">{artistToDisplay}</div>;
   }
 }
 

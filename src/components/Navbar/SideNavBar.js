@@ -5,13 +5,11 @@ class SideNavBar extends Component {
   render() {
     return (
       <div className="sideBarContainer">
-        <div className="logoContainer">
-          <Link to="/">
-            <button className="logo" />
-          </Link>
-        </div>
         <div className="sideNavContainer">
-          <Link to="/search"><img className="search" src="http://www.clker.com/cliparts/n/U/H/1/H/u/search-icon-white-one-md.png"/>
+          <div className="logoContainer">
+            <Link to="/" className="logo">forte</Link>
+          </div>
+          <Link to="/search"><img className="search" src="http://www.clker.com/cliparts/n/U/H/1/H/u/search-icon-white-one-md.png" alt=""/>
           </Link>
           <div className="navItemsContainer">
             {/* <button className="sideNavItems">Playlists</button> */}

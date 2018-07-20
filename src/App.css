@@ -88,7 +88,6 @@ a {
   text-align: center; }
 
 .search-wrapper {
-  margin-top: 20px;
   margin-left: 120px; }
   .search-wrapper h1 {
     padding: 40px; }
@@ -104,9 +103,9 @@ a {
   .search-wrapper input {
     font-size: 2vh;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 2px 4px;
-    margin-top: 11vh;
+    margin-top: 9vh;
     margin-left: 20vw; }
 
 .result-box {
@@ -116,14 +115,6 @@ a {
   position: relative; }
   .result-box .track-play {
     position: relative; }
-
-.searchInput {
-  font-size: 2vh;
-  border: none;
-  border-radius: 10px;
-  padding: 2px 4px;
-  margin-top: 11vh;
-  margin-left: 20vw; }
 
 .searchButton {
   font-size: 2vh;
@@ -176,18 +167,15 @@ a {
 
 .loginLogout {
   font-size: 2vh;
-  color: white;
+  color: #a3a3a3;
   background-color: transparent;
-  border: 2px solid #a3a3a3;
-  padding: 4px 7px;
-  border-radius: 5px;
+  padding: 2vh 10px;
   transition-duration: 0.3s;
   cursor: pointer; }
 
 .loginLogout:hover {
   color: white;
-  background-color: #0c7d4373;
-  border: 2px solid white; }
+  background-color: #0c7d4373; }
 
 .profileButton {
   height: 9vh;
@@ -198,27 +186,35 @@ a {
 .displayName {
   margin-right: 5vw;
   font-size: 2vh;
-  color: white; }
+  color: white;
+  cursor: default; }
 
 .sideBarContainer {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 5vh;
+  top: 7vh;
   justify-content: center;
   z-index: 5; }
 
+.logoContainer {
+  padding-bottom: 3vh; }
+
 .logo {
   font-size: 2vh;
-  position: absolute;
-  top: -2.5vh;
-  left: 3vw;
+  left: 2vw;
   padding: 3vh;
-  border-radius: 50%; }
+  height: 9vh;
+  width: 9vh;
+  border-radius: 50%;
+  background-color: #0c7d4373;
+  display: flex;
+  justify-content: center;
+  cursor: pointer; }
 
 .sideNavContainer {
-  padding-top: 6vh;
-  padding-bottom: 800px;
+  background-color: #2b2b2b;
+  padding-bottom: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -236,7 +232,7 @@ a {
   margin-top: 2vh;
   font-size: 2vh;
   color: #a3a3a3;
-  padding: 0 1.5vw;
+  padding: 0 1vw;
   transition-duration: 0.3s; }
 
 .sideNavItems:hover {
@@ -336,3 +332,27 @@ a {
 
 .input-fields {
   margin-left: 30%; }
+
+.artistWrapper {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10vh;
+  margin-left: 10vw; }
+
+.artistImage {
+  position: relative;
+  text-align: center;
+  max-height: 200px;
+  max-width: 200px;
+  height: auto;
+  width: auto;
+  margin: 10px;
+  cursor: pointer; }
+
+.artistName {
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  justify-content: center; }

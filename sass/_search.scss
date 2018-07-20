@@ -1,5 +1,5 @@
 .search-wrapper {
-  margin-top: 20px;
+  // margin-top: 2vh;
   margin-left: 120px;
 
   h1 {
@@ -21,13 +21,12 @@
   input {
     font-size: 2vh;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 2px 4px;
-    margin-top: 11vh;
+    margin-top: 9vh;
     margin-left: 20vw;
   }
 }
-
 .result-box {
   display: grid;
   grid: auto-flow / repeat(auto-fill, minmax(300px, 1fr));
@@ -36,16 +35,6 @@
   .track-play {
     position: relative;
   }
-}
-
-.searchInput {
-  // position: absolute;
-  font-size: 2vh;
-  border: none;
-  border-radius: 10px;
-  padding: 2px 4px;
-  margin-top: 11vh;
-  margin-left: 20vw;
 }
 .searchButton {
   font-size: 2vh;
