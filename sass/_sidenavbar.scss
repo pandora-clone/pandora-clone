@@ -1,4 +1,4 @@
-.sideBarContainer {
+.sideBarContainer{
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -6,15 +6,15 @@
   justify-content: center;
   z-index: 5;
 }
-.logo {
+.logo{
   font-size: 2vh;
   position: absolute;
   top: -2.5vh;
-  left: 1.5vw;
+  left: 3vw;
   padding: 3vh;
-  border-radius: 50px;
+  border-radius: 50%;
 }
-.sideNavContainer {
+.sideNavContainer{
   // border: 3px solid red;
   background-color: #2b2b2b;
   padding-top: 6vh;
@@ -23,29 +23,27 @@
   flex-direction: column;
   align-items: center;
 }
-.search {
+.search{
   // margin-top: -5vh;
-  font-size: 2vh;
+  // font-size: 2vh;
+  height: 7vh;
+  width: 7vh;
+  padding: 2vh;
 }
-.sort {
-  margin-top: 10px;
-  color: white;
-}
-.navItemsContainer {
+.navItemsContainer{
   // margin-top: -5vh;
   display: flex;
   flex-direction: column;
 }
-.sideNavItems {
+.sideNavItems{
   margin-top: 2vh;
   font-size: 2vh;
   color: rgb(163, 163, 163);
-  padding: 1.5vh 1.5 vw;
-  padding-left: 1.5vw;
-  padding-right: 1.5vw;
+  padding: 0 1.5vw;
+  transition-duration: 0.3s;
   // position: relative;
 }
-.sideNavItems:hover {
+.sideNavItems:hover{
   color: white;
   background-color: #0c7d4373;
 }

@@ -1,35 +1,42 @@
 .topNavContainer{
     // border: 3px solid teal;
     background-color: #2b2b2b;
-    padding: 5px;
+    // padding: 5px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     position: fixed;
     top: 0;
     left: 0;
+    height: 7vh;
     width: 100vw;
     z-index: 5;
 }
 .loginLogout{
     font-size: 2vh;
-    background-color: rgb(163, 163, 163);
+    color: rgb(255, 255, 255);
+    background-color: transparent;
     border: 2px solid rgb(163, 163, 163);
-    padding: 2px 4px;
-    border-radius: 30px;
-    transition-duration: 0.5s;
+    padding: 4px 7px;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+    // margin-right: 10vw;
     cursor: pointer;
 }
 .loginLogout:hover{
-    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    background-color: #0c7d4373;
+    border: 2px solid rgb(255, 255, 255);
 }
 .profileButton{
-    margin: 0 15px;
+    // margin: 0 15px;
+    height: 9vh;
+    width: 9vh;
     padding: 2vh;
-    border-radius: 50px;
+    border-radius: 50%;
 }
 .displayName{
     margin-right: 5vw;
     font-size: 2vh;
-    color: white;
+    color: rgb(255, 255, 255);
 }
