@@ -32,7 +32,12 @@
   display: grid;
   grid: auto-flow / repeat(auto-fill, minmax(300px, 1fr));
   text-align: center;
+  position: relative;
+  .track-play {
+    position: relative;
+  }
 }
+
 .searchInput {
   // position: absolute;
   font-size: 2vh;
