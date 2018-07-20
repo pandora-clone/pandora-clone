@@ -10,6 +10,7 @@ import Songs from "./Components/Songs/Songs";
 import Playlist from "./Components/Playlist/Playlist";
 import UsersSongs from "./Components/UsersSongs/UsersSongs";
 import AddSong from "./Components/AddSong/AddSong";
+import AlbumSearch from "./Components/Search/AlbumSearch";
 
 export default (
   <Switch>
@@ -22,5 +23,6 @@ export default (
     <Route path="/usersongs" component={UsersSongs} />
     <Route path="/addsong" component={AddSong} />
     <Route path="/songs" component={Songs} />
+    <Route path="/album/:id" component={AlbumSearch} />
   </Switch>
 );

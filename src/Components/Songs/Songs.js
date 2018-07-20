@@ -79,8 +79,11 @@ class Songs extends Component {
     console.log("songs page:", this.props);
     const rctListToDisplay = this.state.rctList.map((song, i) => {
       return (
-        <div key={i} onClick={() => this.playAudio(song.preview_url)}>
-          <div className="track-play">
+        <div key={i}>
+          <div
+            className="track-play"
+            onClick={() => this.playAudio(song.preview_url)}
+          >
             <div className="track-play-inner">
               {this.state.playingUrl === song.preview_url ? (
                 <span>| |</span>
@@ -88,13 +91,13 @@ class Songs extends Component {
                 <span>&#9654;</span>
               )}
             </div>
+            <img
+              className="songs-img-container"
+              src={song.album.images[0].url}
+              alt={song.name}
+              // style={{ width: "100%" }}
+            />
           </div>
-          <img
-            className="songs-img-container"
-            src={song.album.images[0].url}
-            alt={song.name}
-            // style={{ width: "100%" }}
-          />
           <p>{song.name}</p>
         </div>
       );
@@ -102,8 +105,11 @@ class Songs extends Component {
 
     const favListToDisplay = this.props.favReducer.favList.map((favSong, i) => {
       return (
-        <div key={i} onClick={() => this.playAudio(favSong.preview_url)}>
-          <div className="track-play">
+        <div key={i}>
+          <div
+            className="track-play"
+            onClick={() => this.playAudio(favSong.preview_url)}
+          >
             <div className="track-play-inner">
               {this.state.playingUrl === favSong.preview_url ? (
                 <span>| |</span>
@@ -111,13 +117,13 @@ class Songs extends Component {
                 <span>&#9654;</span>
               )}
             </div>
+            <img
+              className="songs-img-container"
+              src={favSong.img}
+              alt={favSong.song_name}
+              // style={{ width: "100%" }}
+            />
           </div>
-          <img
-            className="songs-img-container"
-            src={favSong.img}
-            alt={favSong.song_name}
-            // style={{ width: "100%" }}
-          />
           <p>{favSong.song_name}</p>
           <button
             onClick={() =>

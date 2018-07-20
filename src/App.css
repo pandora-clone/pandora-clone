@@ -112,7 +112,10 @@ a {
 .result-box {
   display: grid;
   grid: auto-flow/repeat(auto-fill, minmax(300px, 1fr));
-  text-align: center; }
+  text-align: center;
+  position: relative; }
+  .result-box .track-play {
+    position: relative; }
 
 .searchInput {
   font-size: 2vh;

@@ -16,16 +16,17 @@ class Search extends Component {
       searchArtists: [],
       searchPlaylist: [],
       searchTracks: [],
-      user_id: null,
-      refs: ""
+      user_id: null
     };
   }
 
-  handleInputChange = e => {
+  handleSearch = e => {
     // console.log(e.target.value);
+    e.preventDefault();
     this.setState({
       searchTerm: e.target.value
     });
+    this.search();
   };
 
   getMe = () => {
@@ -57,7 +58,6 @@ class Search extends Component {
 
   componentDidMount() {
     this.getMe();
-    // this.search();
   }
 
   playAudio(previewUrl, trackId) {
@@ -92,11 +92,13 @@ class Search extends Component {
     console.log("search state", this.state);
     const searchAlbumsToDisplay = this.state.searchAlbums
       .filter(album => album.images[0])
-      .map(album => {
+      .map((album, i) => {
         return (
-          <div key={album.id}>
-            <img src={album.images[0].url} alt={album.name} />
-            <h3>{album.name}</h3>
+          <div key={i}>
+            <Link to={`/album/${album.id}`}>
+              <img src={album.images[0].url} alt={album.name} />
+              <h3>{album.name}</h3>
+            </Link>
           </div>
         );
       });
@@ -118,7 +120,7 @@ class Search extends Component {
       .map(playlist => {
         return (
           <div key={playlist.id}>
-            <Link to={"/playlist/" + playlist.id}>
+            <Link to={`/playlist/${playlist.id}`}>
               <img src={playlist.images[0].url} alt={playlist.name} />
               <h3>{playlist.name}</h3>
             </Link>
@@ -129,20 +131,20 @@ class Search extends Component {
       .filter(track => track.album.images[0] && track.preview_url !== null)
       .map((track, i) => {
         return (
-          <div
-            key={i}
-            onClick={() => this.playAudio(track.preview_url, track.id)}
-          >
-            <img src={track.album.images[0].url} alt={track.name} />
-            {/* <div className="track-play"> */}
-            <div className="track-play-inner">
-              {this.state.playingUrl === track.preview_url ? (
-                <span>| |</span>
-              ) : (
-                <span>&#9654;</span>
-              )}
+          <div key={i}>
+            <div
+              className="track-play"
+              onClick={() => this.playAudio(track.preview_url, track.id)}
+            >
+              <div className="track-play-inner">
+                {this.state.playingUrl === track.preview_url ? (
+                  <span>| |</span>
+                ) : (
+                  <span>&#9654;</span>
+                )}
+              </div>
+              <img src={track.album.images[0].url} alt={track.name} />
             </div>
-            {/* </div> */}
             <h3>{track.name}</h3>
 
             <button
@@ -169,11 +171,11 @@ class Search extends Component {
         <input
           className="searchInput"
           value={this.state.searchTerm}
-          onChange={this.handleInputChange}
+          onChange={this.handleSearch}
         />
-        <button className="searchButton" onClick={this.search}>
+        {/* <button className="searchButton" onClick={this.search}>
           Search
-        </button>
+        </button> */}
         {this.state.searchTracks[0] ? (
           <div>
             <h1> TRACKS </h1>
