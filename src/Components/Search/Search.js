@@ -131,9 +131,9 @@ class Search extends Component {
         return (
           <div
             key={i}
-            onClick={() => this.playAudio(track.preview_url, track.id)}
           >
-            <img src={track.album.images[0].url} alt={track.name} />
+            <img src={track.album.images[0].url} alt={track.name}
+            onClick={() => this.playAudio(track.preview_url, track.id)}/>
             {/* <div className="track-play"> */}
             <div className="track-play-inner">
               {this.state.playingUrl === track.preview_url ? (
