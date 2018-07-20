@@ -4,11 +4,12 @@ const login = (req, res, next) => {
   const user_id = req.body.id;
   const username = req.body.display_name;
   const { email } = req.body;
+  const profilePic = req.body.images[0].url
 
-  // console.log(" userCtrl req body", req.body);
+  console.log(" userCtrl req body", req.body);
   req.session.user = { user_id, username, email };
   console.log("here is req.session at login: ", req.session);
-  savedUser = { user_id, username, email };
+  savedUser = { user_id, username, email, profilePic };
 
   res.status(200).send(req.session);
 };

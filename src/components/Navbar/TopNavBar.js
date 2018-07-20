@@ -18,19 +18,22 @@ class TopNavBar extends Component {
                   "https://accounts.spotify.com/en/logout?",
                   "_blank",
                   "toolbar=yes,scrollbars=no,resizable=no,top=200,left=450,width=600,height=400"
-                )
-              }
-            >
-              Logout
-            </button>
+                )}>Log Out</button>
           </a>
         ) : (
           <a href="http://localhost:8888/login">
-            <button className="loginLogout">Login</button>
+            <button className="loginLogout">Log In</button>
           </a>
         )}
-        <button className="profileButton" />
-        <span className="displayName">{this.props.user.username}</span>
+        {this.props.user.profilePic ? (
+          this.props.user.profilePic != null ? 
+            <img className="profileButton" src={this.props.user.profilePic}/> 
+            : 
+            <img className="profileButton" src='https://gaia.ub.edu/twiki/pub/Main/UserProfileHeader/default-user-profile.jpg'/>)
+            : null}
+        <div className="displayName">
+          {this.props.user.username != null ? <span>{this.props.user.username}</span> : <span>{this.props.user.user_id}</span>}
+        </div>
       </div>
     );
   }
