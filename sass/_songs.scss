@@ -13,8 +13,10 @@
   border-radius: 50%;
 }
 
-.fav-songs-container {
+.sub-songs-container {
+  margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  text-align: center;
 }
