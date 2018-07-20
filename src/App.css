@@ -163,32 +163,37 @@ a {
     opacity: 0.8; } }
 
 .topNavContainer {
-  padding: 5px;
+  background-color: #2b2b2b;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   position: fixed;
   top: 0;
   left: 0;
+  height: 7vh;
   width: 100vw;
   z-index: 5; }
 
 .loginLogout {
   font-size: 2vh;
-  background-color: #a3a3a3;
+  color: white;
+  background-color: transparent;
   border: 2px solid #a3a3a3;
-  padding: 2px 4px;
-  border-radius: 30px;
-  transition-duration: 0.5s;
+  padding: 4px 7px;
+  border-radius: 5px;
+  transition-duration: 0.3s;
   cursor: pointer; }
 
 .loginLogout:hover {
-  background-color: white; }
+  color: white;
+  background-color: #0c7d4373;
+  border: 2px solid white; }
 
 .profileButton {
-  margin: 0 15px;
+  height: 9vh;
+  width: 9vh;
   padding: 2vh;
-  border-radius: 50px; }
+  border-radius: 50%; }
 
 .displayName {
   margin-right: 5vw;
@@ -207,9 +212,9 @@ a {
   font-size: 2vh;
   position: absolute;
   top: -2.5vh;
-  left: 1.5vw;
+  left: 3vw;
   padding: 3vh;
-  border-radius: 50px; }
+  border-radius: 50%; }
 
 .sideNavContainer {
   padding-top: 6vh;
@@ -219,11 +224,9 @@ a {
   align-items: center; }
 
 .search {
-  font-size: 2vh; }
-
-.sort {
-  margin-top: 10px;
-  color: white; }
+  height: 7vh;
+  width: 7vh;
+  padding: 2vh; }
 
 .navItemsContainer {
   display: flex;
@@ -233,9 +236,8 @@ a {
   margin-top: 2vh;
   font-size: 2vh;
   color: #a3a3a3;
-  padding: 1.5vh 1.5 vw;
-  padding-left: 1.5vw;
-  padding-right: 1.5vw; }
+  padding: 0 1.5vw;
+  transition-duration: 0.3s; }
 
 .sideNavItems:hover {
   color: white;

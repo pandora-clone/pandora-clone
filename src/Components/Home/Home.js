@@ -93,8 +93,8 @@ class Home extends Component {
         .getMe()
         .then(res => {
           console.log(res);
-          const { display_name, id, email } = res;
-          this.props.login(display_name, id, email);
+          const { display_name, id, email, images } = res;
+          this.props.login(display_name, id, email, images);
         })
         .then(() => this.props.getUser());
     }
