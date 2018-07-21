@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { connect } from "react-redux";
-import { addRctPlayed } from "../../redux/rctPlayedReducer";
+import { addRctPlayed } from "../../../redux/rctPlayedReducer";
 const spotifyApi = new SpotifyWebApi();
 
 class AlbumSearch extends Component {
@@ -47,7 +47,7 @@ class AlbumSearch extends Component {
 
   getAlbumTracks = () => {
     spotifyApi.getAlbumTracks(this.props.match.params.id).then(response => {
-      console.log("response: ", response);
+      // console.log("response: ", response);
       this.setState({
         albumSongs: response.items
       });
@@ -56,7 +56,7 @@ class AlbumSearch extends Component {
 
   getAlbum = () => {
     spotifyApi.getAlbum(this.props.match.params.id).then(response => {
-      console.log("album response: ", response);
+      // console.log("album response: ", response);
       this.setState({
         albumImgUrl: response.images[0].url
       });
@@ -64,8 +64,8 @@ class AlbumSearch extends Component {
   };
 
   render() {
-    console.log("albumsearch page:   ", this.props);
-    console.log(this.state);
+    // console.log("albumsearch page:   ", this.props);
+    // console.log(this.state);
     return (
       <div className="albumSearchWrapper">
         <div className="albumSearchImage">
