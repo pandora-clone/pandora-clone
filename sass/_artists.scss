@@ -6,19 +6,28 @@
     margin-top: 10vh;
     margin-left: 10vw;
 }
-.artistImage{
-    position: relative;
-    text-align: center;
-    max-height: 200px;
-    max-width: 200px;
-    height: auto;
-    width: auto;
+.imageWrapper{
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 10px;
+}
+.artistImage{
+    width: 200px;
+    height: auto;
     cursor: pointer;
 }
 .artistName{
     display: flex;
     align-items: center;
-    max-width: 200px;
+    // max-width: 200px;
     justify-content: center;
+}
+.artistFollowers{
+    margin-left: 1vw;
 }

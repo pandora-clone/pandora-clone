@@ -67,27 +67,27 @@ class AlbumSearch extends Component {
     console.log("albumsearch page:   ", this.props);
     console.log(this.state);
     return (
-      <div>
-        <div className="category-wrapper">
+      <div className="albumSearchWrapper">
+        <div className="albumSearchImage">
           <img src={this.state.albumImgUrl} alt="album Img" />
+        </div>
+        <div className="allSongContainer">
           {this.state.albumSongs &&
             this.state.albumSongs.map((track, i) => {
               if (track.preview_url) {
                 return (
                   <div
-                    className="home-image-container"
-                    key={i}
-                    onClick={() => this.playAudio(track.preview_url, track.id)}
+                  className="eachSongContainer"
+                  key={i}
+                  onClick={() => this.playAudio(track.preview_url, track.id)}
                   >
-                    <div>
                       <div>
                         {this.state.playingUrl === track.preview_url ? (
-                          <span>| |</span>
+                          <span>||</span>
                         ) : (
                           <span>&#9654;</span>
                         )}
                       </div>
-                    </div>
                     <div className="category-text">
                       <h2>{track.name}</h2>
                     </div>
