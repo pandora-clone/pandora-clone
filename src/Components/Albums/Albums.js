@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getUser } from "../../redux/userReducer";
 import { getFavList } from "../../redux/favReducer";
 
@@ -44,11 +45,13 @@ class Albums extends Component {
       return (
         <div key={i}>
           <div className="albumImage">
-            <img
-              src={album.images[1].url}
-              style={{ width: "100%" }}
-              alt={album.name}
-            />
+            <Link to={`/album/${album.id}`}>
+              <img
+                src={album.images[1].url}
+                style={{ width: "100%" }}
+                alt={album.name}
+              />
+            </Link>
           </div>
           <div className="albumName">
             <span>{album.name}</span>

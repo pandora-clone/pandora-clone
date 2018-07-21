@@ -5,6 +5,12 @@ import SpotifyWebApi from "spotify-web-api-js";
 
 import { addFavList } from "../../redux/favReducer";
 import { addRctPlayed } from "../../redux/rctPlayedReducer";
+import {
+  getAlbums,
+  getTracks,
+  getPlaylists,
+  getArtists
+} from "../../redux/searchReducer";
 
 const spotifyApi = new SpotifyWebApi();
 class Search extends Component {
@@ -12,21 +18,30 @@ class Search extends Component {
     super();
     this.state = {
       searchTerm: "",
-      searchAlbums: [],
-      searchArtists: [],
-      searchPlaylist: [],
-      searchTracks: [],
       user_id: null
     };
   }
 
   handleSearch = e => {
     // console.log(e.target.value);
-    e.preventDefault();
+    // e.preventDefault();
     this.setState({
       searchTerm: e.target.value
     });
-    this.search();
+    this.props.getAlbums(this.state.searchTerm);
+    this.props.getArtists(this.state.searchTerm);
+    this.props.getPlaylists(this.state.searchTerm);
+    this.props.getTracks(this.state.searchTerm);
+  };
+
+  submitSearch = e => {
+    console.log(e.key);
+    if (e.key === "Enter") {
+      this.props.getAlbums(this.state.searchTerm);
+      this.props.getArtists(this.state.searchTerm);
+      this.props.getPlaylists(this.state.searchTerm);
+      this.props.getTracks(this.state.searchTerm);
+    }
   };
 
   getMe = () => {
@@ -36,24 +51,6 @@ class Search extends Component {
         user_id: response.id
       });
     });
-  };
-  search = () => {
-    spotifyApi
-      .search(this.state.searchTerm, ["album", "artist", "playlist", "track"], {
-        limit: 10
-      })
-      .then(response => {
-        // console.log(response);
-        this.setState({
-          searchAlbums: response.albums.items,
-          searchArtists: response.artists.items,
-          searchPlaylist: response.playlists.items,
-          searchTracks: response.tracks.items,
-          playingUrl: "",
-          audio: null,
-          playing: false
-        });
-      });
   };
 
   componentDidMount() {
@@ -89,8 +86,8 @@ class Search extends Component {
 
   render() {
     // console.log("check here", this.props);
-    console.log("search state", this.state);
-    const searchAlbumsToDisplay = this.state.searchAlbums
+    // console.log("search state", this.state);
+    const searchAlbumsToDisplay = this.props.searchReducer.searchAlbums
       .filter(album => album.images[0])
       .map((album, i) => {
         return (
@@ -102,7 +99,7 @@ class Search extends Component {
           </div>
         );
       });
-    const searchArtistsToDisplay = this.state.searchArtists
+    const searchArtistsToDisplay = this.props.searchReducer.searchArtists
       .filter(artist => {
         return artist.images[0];
       })
@@ -110,12 +107,18 @@ class Search extends Component {
         // console.log(typeof artist.images[0].url);
         return (
           <div key={artist.id}>
-            <img src={artist.images[0].url} alt={artist.name} />
-            <h3>{artist.name}</h3>
+            <Link to={`/artist/${artist.id}`}>
+              <img
+                className="search-artist-img"
+                src={artist.images[0].url}
+                alt={artist.name}
+              />
+              <h3>{artist.name}</h3>
+            </Link>
           </div>
         );
       });
-    const searchPlaylistToDisplay = this.state.searchPlaylist
+    const searchPlaylistToDisplay = this.props.searchReducer.searchPlaylists
       .filter(playlist => playlist.images[0])
       .map(playlist => {
         return (
@@ -127,16 +130,16 @@ class Search extends Component {
           </div>
         );
       });
-    const searchTracksToDisplay = this.state.searchTracks
+    const searchTracksToDisplay = this.props.searchReducer.searchTracks
       .filter(track => track.album.images[0] && track.preview_url !== null)
       .map((track, i) => {
         return (
           <div key={i}>
-            <div
-              className="track-play"
-              onClick={() => this.playAudio(track.preview_url, track.id)}
-            >
-              <div className="track-play-inner">
+            <div className="search-track-play">
+              <div
+                className="search-track-play-inner"
+                onClick={() => this.playAudio(track.preview_url, track.id)}
+              >
                 {this.state.playingUrl === track.preview_url ? (
                   <span>| |</span>
                 ) : (
@@ -172,11 +175,10 @@ class Search extends Component {
           className="searchInput"
           value={this.state.searchTerm}
           onChange={this.handleSearch}
+          onKeyPress={e => this.submitSearch(e)}
         />
-        {/* <button className="searchButton" onClick={this.search}>
-          Search
-        </button> */}
-        {this.state.searchTracks[0] ? (
+
+        {this.props.searchReducer.searchTracks[0] ? (
           <div>
             <h1> TRACKS </h1>
             <div className="searched-tracks result-box">
@@ -184,7 +186,7 @@ class Search extends Component {
             </div>
           </div>
         ) : null}
-        {this.state.searchAlbums[0] ? (
+        {this.props.searchReducer.searchAlbums[0] ? (
           <div>
             <h1> ALBUMS </h1>
             <div className="searched-albums result-box">
@@ -192,7 +194,7 @@ class Search extends Component {
             </div>
           </div>
         ) : null}
-        {this.state.searchArtists[0] ? (
+        {this.props.searchReducer.searchArtists[0] ? (
           <div>
             <h1> ARTISTS</h1>
             <div className="searched-artists result-box">
@@ -201,7 +203,7 @@ class Search extends Component {
           </div>
         ) : null}
 
-        {this.state.searchPlaylist[0] ? (
+        {this.props.searchReducer.searchPlaylists[0] ? (
           <div>
             <h1>PLAYLISTS</h1>
             <div className="searched-playlists result-box">
@@ -220,6 +222,10 @@ export default connect(
   mapStateToProps,
   {
     addFavList,
-    addRctPlayed
+    addRctPlayed,
+    getAlbums,
+    getTracks,
+    getPlaylists,
+    getArtists
   }
 )(Search);

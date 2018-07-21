@@ -107,10 +107,10 @@ class Songs extends Component {
       return (
         <div key={i}>
           <div
-            className="track-play"
+            className="song-track-play"
             onClick={() => this.playAudio(favSong.preview_url)}
           >
-            <div className="track-play-inner">
+            <div className="song-track-play-inner">
               {this.state.playingUrl === favSong.preview_url ? (
                 <span>| |</span>
               ) : (

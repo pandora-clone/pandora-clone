@@ -1,4 +1,4 @@
-.sideBarContainer{
+.sideBarContainer {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -7,13 +7,13 @@
   // border-right: 1px solid rgb(160, 160, 160);
   z-index: 5;
 }
-.logoContainer{
+.logoContainer {
   padding-bottom: 3vh;
 }
-.logo{
+.logo {
   // position: absolute;
   // top: -2.5vh;
-  font-size: 2vh;//if name is forte, could use the font amaranth bold
+  font-size: 2vh; //if name is forte, could use the font amaranth bold
   left: 2vw;
   padding: 3vh;
   height: 9vh;
@@ -24,28 +24,28 @@
   justify-content: center;
   cursor: pointer;
 }
-.sideNavContainer{
+.sideNavContainer {
   // border: 3px solid red;
-  background-color: #2b2b2b;
+  // background-color: #2b2b2b;
   // padding-top: 6vh;
   padding-bottom: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.search{
+.search {
   // margin-top: 3vh;
   // font-size: 2vh;
   height: 7vh;
   width: 7vh;
   padding: 2vh;
 }
-.navItemsContainer{
+.navItemsContainer {
   // margin-top: 5vh;
   display: flex;
   flex-direction: column;
 }
-.sideNavItems{
+.sideNavItems {
   margin-top: 2vh;
   font-size: 2vh;
   color: rgb(163, 163, 163);
@@ -53,7 +53,7 @@
   transition-duration: 0.3s;
   // position: relative;
 }
-.sideNavItems:hover{
+.sideNavItems:hover {
   color: white;
   background-color: #0c7d4373;
 }

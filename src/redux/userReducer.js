@@ -15,10 +15,10 @@ export function getUser() {
   };
 }
 
-export function login(display_name, id, email, images) {
+export function login(display_name, id, email) {
   return {
     type: LOGIN,
-    payload: axios.post("/api/login", { display_name, id, email, images })
+    payload: axios.post("/api/login", { display_name, id, email })
   };
 }
 export function logout() {
