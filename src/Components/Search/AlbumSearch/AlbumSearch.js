@@ -12,7 +12,9 @@ class AlbumSearch extends Component {
       playingUrl: "",
       audio: null,
       playing: false,
-      albumImgUrl: ""
+      albumImgUrl: "",
+      artist: "",
+      albumName: ""
     };
   }
 
@@ -56,20 +58,23 @@ class AlbumSearch extends Component {
 
   getAlbum = () => {
     spotifyApi.getAlbum(this.props.match.params.id).then(response => {
-      // console.log("album response: ", response);
+      console.log("album response: ", response);
       this.setState({
-        albumImgUrl: response.images[0].url
+        albumImgUrl: response.images[0].url,
+        artist: response.artists[0].name,
+        albumName: response.name
       });
     });
   };
 
   render() {
     // console.log("albumsearch page:   ", this.props);
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div className="albumSearchWrapper">
-        <div className="albumSearchImage">
+        <div className="albumInfo">
           <img src={this.state.albumImgUrl} alt="album Img" />
+          <h2>{this.state.artist} - {this.state.albumName}</h2>
         </div>
         <div className="allSongContainer">
           {this.state.albumSongs &&
@@ -81,16 +86,17 @@ class AlbumSearch extends Component {
                   key={i}
                   onClick={() => this.playAudio(track.preview_url, track.id)}
                   >
-                      <div>
+                      <div className="playPause">
                         {this.state.playingUrl === track.preview_url ? (
                           <span>||</span>
                         ) : (
                           <span>&#9654;</span>
                         )}
+                        <h2>{track.name}</h2>
                       </div>
-                    <div className="category-text">
+                    {/* <div className="trackNames">
                       <h2>{track.name}</h2>
-                    </div>
+                    </div> */}
                   </div>
                 );
               } else {

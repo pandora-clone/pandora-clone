@@ -5,20 +5,29 @@
     margin-top: 10vh;
     margin-left: 8vw;
 }
-.albumSearchImage img{
+.albumInfo{
+    position: absolute;
+    left: 20vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.albumInfo img{
     max-height: 40vh;
     width: auto;
 }
 .allSongContainer{
+    position: absolute;
+    right: 30vw;
     display: flex;
     flex-direction: column;
 }
 .eachSongContainer{
     float: right;
     position: relative;
-    text-align: center;
     margin: 10px;
     width: 200px;
     cursor: pointer;
-    filter: drop-shadow(0 0 0.2rem rgb(27, 27, 27));
+    // filter: drop-shadow(0 0 0.2rem rgb(27, 27, 27));
 }

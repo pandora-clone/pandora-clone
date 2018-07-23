@@ -7,7 +7,7 @@ class SideNavBar extends Component {
       <div className="sideBarContainer">
         <div className="sideNavContainer">
           <div className="logoContainer">
-            <Link to="/" className="logo">forte</Link>
+            <Link to="/" className="logo">swafli</Link>
           </div>
           <Link to="/search"><img className="search" src="http://www.clker.com/cliparts/n/U/H/1/H/u/search-icon-white-one-md.png" alt=""/>
           </Link>

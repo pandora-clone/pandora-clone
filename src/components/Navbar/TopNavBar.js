@@ -54,10 +54,10 @@ componentDidMount(){
                 )
               }
             >
-              Logout
+              Log Out
           </a>
         ) : (
-          <a href="http://localhost:8888/login" className="loginLogout">Login</a>
+          <a href="http://localhost:8888/login" className="loginLogout">Log In</a>
         )}
         {this.props.user.user_id ? 
                     (<img className="profileButton" src={this.state.profilePic}/>)
