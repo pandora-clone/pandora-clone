@@ -1,0 +1,159 @@
+.newUploads-image-container {
+  position: relative;
+  text-align: center;
+  margin: 10px 10px 0 10px;
+  width: 200px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.2rem rgb(27, 27, 27));
+  img {
+    display: block;
+  }
+}
+.song-name-text {
+  position: absolute;
+  color: white;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.161);
+}
+
+.newUploads-image-container:hover {
+  filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315));
+  .category-text {
+    color: white;
+    background-color: $hover-category-text-color;
+  }
+}
+
+.category-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10vh;
+  margin-left: 8vw;
+}
+.category {
+  margin-top: 10.5vh;
+  margin-left: 7.5vw;
+}
+
+.track-play-user-uploads {
+  position: absolute;
+  text-align: center;
+  font-size: 25px;
+  background-color: black;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  color: white;
+  padding-top: 13px;
+  margin-left: 80px;
+  bottom: 80px;
+  opacity: 0;
+}
+
+.track-play-user-uploads:hover {
+  opacity: 0.8;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+}
+.like-counter-box {
+  position: absolute;
+  margin-left: 65%;
+  top: 13px;
+  width: 60px;
+  border: 2px solid white;
+  padding: 1px;
+  border-radius: 5px;
+  background: #4e4e4e;
+  z-index: 40;
+  cursor: pointer;
+}
+.like-counter-number {
+  font-size: 1.5rem;
+  margin-left: 5px;
+  margin-right: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.song-container {
+  position: relative;
+}
+.add-song-link {
+  border: white 3px solid;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+}
+.add-plus-sign {
+  position: absolute;
+  margin-left: 30%;
+  margin-top: 25%;
+  font-size: 3.5rem;
+}
+.add-song-link:hover {
+  border: rgb(0, 196, 0) 3px solid;
+  color: rgb(0, 196, 0);
+}
+
+.song-description {
+  margin: 0 10px;
+  text-align: center;
+  color: black;
+  border: 1px solid black;
+  button {
+    height: 40px;
+    background-color: #dedede;
+    box-shadow: inset 1px 1px 10px #333;
+
+    height: 35px;
+    width: 100%;
+  }
+}
+.song-author {
+  background-color: white;
+}
+.heart-active {
+  color: #ea404c;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.heart-disabled {
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.heart-button {
+  background-color: black;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+    color: red;
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
