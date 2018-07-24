@@ -4,7 +4,9 @@
 
   h1 {
     // text-align: center;
-    padding: 40px;
+    padding-top: 40px;
+    border-bottom: 3px solid #0c7d4373;
+    width: 30vw;
   }
   img {
     position: relative;
@@ -24,7 +26,8 @@
     padding: 2px 4px;
     margin-top: 9vh;
     background: transparent;
-    width: 100%;
+    width: 95%;
+    margin-left: 3vw;
     height: 8vh;
     border-color: rgba(255, 255, 255, 0.161);
     box-shadow: 5px 5px 5px rgba(255, 255, 255, 0.161);
@@ -32,13 +35,14 @@
     color: white;
   }
 }
-.search-artist-img {
-  border-radius: 50%;
-}
+// .search-artist-img {
+//   border-radius: 50%;
+// }
 .result-box {
   display: grid;
   grid: auto-flow / repeat(auto-fill, minmax(300px, 1fr));
   text-align: center;
+  margin-left: 2vw;
   .search-track-play {
     position: relative;
     display: flex;

@@ -61,28 +61,33 @@ class ArtistTracks extends Component {
         <h1 className="artist-track-title">
           Top Tracks by {this.state.artist}
         </h1>
-        <div className="artistTrack-wrapper">
+        <div className="category-wrapper">
           {this.state.artistTopTracks &&
             this.state.artistTopTracks.map((track, i) => {
               // console.log("track", track);
               if (track.preview_url) {
                 return (
-                  <div key={i} className="artist-track-play">
-                    <img src={track.album.images[0].url} alt={track.name} />
-
+                  <div key={i} className="home-image-container">
+                    <img
+                      src={track.album.images[0].url}
+                      style={{ width: "100%" }}
+                      alt={track.name}
+                    />
                     <div
-                      className="artist-track-play-inner"
+                      className="track-play-inner"
                       onClick={() =>
                         this.playAudio(track.preview_url, track.id)
                       }
                     >
                       {this.state.playingUrl === track.preview_url ? (
-                        <span>| |</span>
+                        <span>||</span>
                       ) : (
                         <span>&#9654;</span>
                       )}
                     </div>
-                    <h2>{track.name}</h2>
+                    <div className="category-text">
+                      <h2>{track.name}</h2>
+                    </div>
                   </div>
                 );
               } else {

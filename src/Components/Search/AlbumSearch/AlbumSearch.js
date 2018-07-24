@@ -74,7 +74,8 @@ class AlbumSearch extends Component {
       <div className="albumSearchWrapper">
         <div className="albumInfo">
           <img src={this.state.albumImgUrl} alt="album Img" />
-          <h2>{this.state.artist} - {this.state.albumName}</h2>
+          <h1>{this.state.albumName}</h1>
+          <h3>{this.state.artist}</h3>
         </div>
         <div className="allSongContainer">
           {this.state.albumSongs &&
@@ -92,11 +93,10 @@ class AlbumSearch extends Component {
                         ) : (
                           <span>&#9654;</span>
                         )}
-                        <h2>{track.name}</h2>
                       </div>
-                    {/* <div className="trackNames">
+                    <div className="trackNames">
                       <h2>{track.name}</h2>
-                    </div> */}
+                    </div>
                   </div>
                 );
               } else {

@@ -1,6 +1,11 @@
 .artist-track-title {
-  margin-top: 100px;
+  position: relative;
+  top: 10vh;
+  left: 38vw;
+  // margin-top: 100px;
+  border-bottom: 3px solid #0c7d4373;
   text-align: center;
+  width: 30vw;
 }
 
 .artistTrack-wrapper {

@@ -84,7 +84,7 @@ class Playlist extends Component {
                     <div className="track-play">
                       <div className="track-play-inner">
                         {this.state.playingUrl === track.track.preview_url ? (
-                          <span>| |</span>
+                          <span>||</span>
                         ) : (
                           <span>&#9654;</span>
                         )}

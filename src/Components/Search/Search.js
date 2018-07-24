@@ -141,7 +141,7 @@ class Search extends Component {
                 onClick={() => this.playAudio(track.preview_url, track.id)}
               >
                 {this.state.playingUrl === track.preview_url ? (
-                  <span>| |</span>
+                  <span>||</span>
                 ) : (
                   <span>&#9654;</span>
                 )}
@@ -164,7 +164,7 @@ class Search extends Component {
                 )
               }
             >
-              add to Fav
+              Add to Fav
             </button>
           </div>
         );
@@ -180,7 +180,7 @@ class Search extends Component {
 
         {this.props.searchReducer.searchTracks[0] ? (
           <div>
-            <h1> TRACKS </h1>
+            <h1>Tracks</h1>
             <div className="searched-tracks result-box">
               {searchTracksToDisplay}
             </div>
@@ -188,7 +188,7 @@ class Search extends Component {
         ) : null}
         {this.props.searchReducer.searchAlbums[0] ? (
           <div>
-            <h1> ALBUMS </h1>
+            <h1> Albums </h1>
             <div className="searched-albums result-box">
               {searchAlbumsToDisplay}
             </div>
@@ -196,7 +196,7 @@ class Search extends Component {
         ) : null}
         {this.props.searchReducer.searchArtists[0] ? (
           <div>
-            <h1> ARTISTS</h1>
+            <h1>Artists</h1>
             <div className="searched-artists result-box">
               {searchArtistsToDisplay}
             </div>
@@ -205,7 +205,7 @@ class Search extends Component {
 
         {this.props.searchReducer.searchPlaylists[0] ? (
           <div>
-            <h1>PLAYLISTS</h1>
+            <h1>Playlists</h1>
             <div className="searched-playlists result-box">
               {searchPlaylistToDisplay}
             </div>

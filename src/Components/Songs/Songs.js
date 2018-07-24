@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import SpotifyWebApi from "spotify-web-api-js";
 
@@ -105,26 +105,28 @@ class Songs extends Component {
 
     const favListToDisplay = this.props.favReducer.favList.map((favSong, i) => {
       return (
-        <div key={i}>
-          <div
-            className="song-track-play"
-            onClick={() => this.playAudio(favSong.preview_url)}
-          >
-            <div className="song-track-play-inner">
-              {this.state.playingUrl === favSong.preview_url ? (
-                <span>| |</span>
-              ) : (
-                <span>&#9654;</span>
-              )}
+        <div key={i} className="home-image-container">
+          <img
+            src={favSong.img}
+            alt={favSong.song_name}
+            style={{ width: "100%" }}
+          />
+          <div className="track-play">
+            <div
+              className="track-play-inner"
+              onClick={() => this.playAudio(favSong.preview_url)
+              }
+              >
+                {this.state.playingUrl === favSong.preview_url ? (
+                  <span>||</span>
+                ) : (
+                  <span>&#9654;</span>
+                )}
             </div>
-            <img
-              className="songs-img-container"
-              src={favSong.img}
-              alt={favSong.song_name}
-              // style={{ width: "100%" }}
-            />
           </div>
-          <p>{favSong.song_name}</p>
+          <div className="category-text">
+            <h2>{favSong.song_name}</h2>
+          </div>
           <button
             onClick={() =>
               this.props
@@ -139,12 +141,12 @@ class Songs extends Component {
     });
 
     return (
-      <div className="songs-container">
-        <h2>Your favorite List</h2>
-        <div className="sub-songs-container">{favListToDisplay}</div>
-        <h2>Recently played</h2>
-        <div className="sub-songs-container"> {rctListToDisplay}</div>
-      </div>
+      <Fragment>
+        <h1 className="artist-track-title">Favorites List</h1>
+        <div className="category-wrapper">{favListToDisplay}</div>
+        <h1 className="songsTitle">Recently Played</h1>
+        <div className="category-wrapper">{rctListToDisplay}</div>
+      </Fragment>
     );
   }
 }

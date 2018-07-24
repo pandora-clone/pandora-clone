@@ -44,21 +44,22 @@ class Artist extends Component {
     const artistToDisplay = this.state.artists.map((artist, i) => {
       return (
         <div key={i}>
-          <Link to={`/artist/${artist.id}`}>
-            <span className="artistName">{artist.name}</span>
-        <div className="imageWrapper">
-            <img
-              className="artistImage"
-              src={artist.images[0].url}
-              alt={artist.name}
-            />
+          <div className="home-image-container">
+            <Link to={`/artist/${artist.id}`}>
+              <img
+                src={artist.images[0].url}
+                style={{ width: "100%" }}
+                alt={artist.name}
+              />
+            </Link>
+            <div className="category-text">
+              <h2>{artist.name}</h2>
             </div>
-          </Link>
-          <p className="artistFollowers">followers: {artist.followers.total}</p>
+          </div>
         </div>
       );
     });
-    return <div className="artistWrapper">{artistToDisplay}</div>;
+    return <div className="category-wrapper">{artistToDisplay}</div>;
   }
 }
 
