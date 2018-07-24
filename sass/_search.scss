@@ -3,7 +3,7 @@
   margin-left: 120px;
 
   h1 {
-    // text-align: center;
+    text-align: center;
     padding: 40px;
   }
   img {
@@ -32,9 +32,7 @@
     color: white;
   }
 }
-.search-artist-img {
-  border-radius: 50%;
-}
+
 .result-box {
   display: grid;
   grid: auto-flow / repeat(auto-fill, minmax(300px, 1fr));
@@ -44,6 +42,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    h3 {
+      position: absolute;
+      bottom: 20px;
+      width: 250px;
+      text-align: center;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.161);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.5em;
+    }
+    .add-fav-icon {
+      position: absolute;
+      top: 20px;
+      font-size: 25px;
+      right: 20%;
+      background-color: transparent;
+      border: none;
+      color: white;
+    }
     .search-track-play-inner {
       position: absolute;
       text-align: center;
@@ -64,7 +83,42 @@
       animation-duration: 0.5s;
     }
   }
+  .search-track-play:hover {
+    filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315));
+    h3 {
+      color: white;
+      background-color: $hover-category-text-color;
+    }
+  }
 }
+.result-box {
+  .search-img-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      position: absolute;
+      bottom: 20px;
+      width: 250px;
+      text-align: center;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.161);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.5em;
+    }
+  }
+  .search-img-box:hover {
+    filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315));
+    h3 {
+      color: white;
+      background-color: $hover-category-text-color;
+    }
+  }
+}
+
 .searchButton {
   font-size: 2vh;
   background-color: rgb(163, 163, 163);
