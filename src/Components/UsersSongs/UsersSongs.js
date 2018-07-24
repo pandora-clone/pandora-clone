@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import map from "lodash/map";
 import size from "lodash/size";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faPlus } from "@fortawesome/free-solid-svg-icons";
 const spotifyApi = new SpotifyWebApi();
 
 class UsersSongs extends Component {
@@ -108,7 +108,7 @@ class UsersSongs extends Component {
                 className="like-counter-box"
               >
                 <span className="like-counter-number">{size(song.votes)}</span>
-                <FontAwesomeIcon className="heart-active" icon={faHeart} />
+                <FontAwesomeIcon className="heart-active" icon={faThumbsUp} />
               </div>
             ) : (
               <div
@@ -116,7 +116,7 @@ class UsersSongs extends Component {
                 className="like-counter-box"
               >
                 <span className="like-counter-number">{size(song.votes)}</span>
-                <FontAwesomeIcon className="heart-disabled" icon={faHeart} />
+                <FontAwesomeIcon className="heart-disabled" icon={faThumbsUp} />
               </div>
             )}
 
@@ -144,7 +144,7 @@ class UsersSongs extends Component {
             </div>
             <div className="song-description ">
               <div className="song-author">
-                <h2>{song.userId}</h2>
+                <h2>{song.author}</h2>
               </div>
             </div>
           </div>
