@@ -39,6 +39,7 @@ class Playlist extends Component {
       }
     }
     this.props.addRctPlayed(trackId);
+    console.log(previewUrl, trackId);
   }
 
   componentDidMount() {

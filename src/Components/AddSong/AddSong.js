@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import SpotifyWebApi from "spotify-web-api-js";
-import { auth, database, storage } from "../../firebase/firebase";
+import { database, storage } from "../../firebase/firebase";
 import availableCategories from "./availableCategories";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage, faMusic } from "@fortawesome/free-solid-svg-icons";
+import { Link, Route, Redirect } from "react-router-dom";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -179,6 +182,7 @@ class AddSong extends Component {
                 onChange={this.handleSubmit}
                 onDrop={this.onImageDrop.bind(this)}
               >
+                <FontAwesomeIcon className="image-icon" icon={faImage} />
                 <p>Select image to upload.</p>
               </Dropzone>
             ) : (
@@ -195,6 +199,7 @@ class AddSong extends Component {
                 onChange={this.handleSubmit}
                 onDrop={this.onImageDrop.bind(this)}
               >
+                <FontAwesomeIcon className="music-icon" icon={faMusic} />
                 <p>Select audio to upload.</p>
               </Dropzone>
             ) : (
@@ -209,7 +214,11 @@ class AddSong extends Component {
           </div>
         </div>
 
-        <button onClick={this.addSong}>Submit</button>
+        <div className="submit-field">
+          <button className="submit-button" onClick={this.addSong}>
+            <h3>Submit</h3>
+          </button>
+        </div>
         {console.log(this.state.image[0])}
 
         <img src={this.state.image[0]} alt="" />
