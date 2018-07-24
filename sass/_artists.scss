@@ -1,0 +1,24 @@
+.artistWrapper{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10vh;
+    margin-left: 10vw;
+}
+.artistImage{
+    position: relative;
+    text-align: center;
+    max-height: 200px;
+    max-width: 200px;
+    height: auto;
+    width: auto;
+    margin: 10px;
+    cursor: pointer;
+}
+.artistName{
+    display: flex;
+    align-items: center;
+    max-width: 200px;
+    justify-content: center;
+}

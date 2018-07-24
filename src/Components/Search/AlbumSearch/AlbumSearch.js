@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { connect } from "react-redux";
-import { addRctPlayed } from "../../redux/rctPlayedReducer";
+import { addRctPlayed } from "../../../redux/rctPlayedReducer";
 const spotifyApi = new SpotifyWebApi();
 
-class Playlist extends Component {
+class AlbumSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlistId: null,
-      playListData: null,
+      albumSongs: [],
       playingUrl: "",
       audio: null,
-      playing: false
+      playing: false,
+      albumImgUrl: ""
     };
-    this.getPlaylistTracks = this.getPlaylistTracks.bind(this);
   }
 
   playAudio(previewUrl, trackId) {
@@ -42,48 +41,47 @@ class Playlist extends Component {
   }
 
   componentDidMount() {
-    const { playListId } = this.props.match.params;
-    this.setState(
-      {
-        playlistId: playListId
-      },
-      () => this.getPlaylistTracks()
-    );
+    this.getAlbumTracks();
+    this.getAlbum();
   }
 
-  getPlaylistTracks() {
-    spotifyApi.getPlaylistTracks("", this.state.playlistId).then(response => {
+  getAlbumTracks = () => {
+    spotifyApi.getAlbumTracks(this.props.match.params.id).then(response => {
+      // console.log("response: ", response);
       this.setState({
-        playListData: response.items
+        albumSongs: response.items
       });
     });
-  }
+  };
+
+  getAlbum = () => {
+    spotifyApi.getAlbum(this.props.match.params.id).then(response => {
+      // console.log("album response: ", response);
+      this.setState({
+        albumImgUrl: response.images[0].url
+      });
+    });
+  };
 
   render() {
-    // console.log(this.props);
+    // console.log("albumsearch page:   ", this.props);
     // console.log(this.state);
     return (
       <div>
         <div className="category-wrapper">
-          {this.state.playListData &&
-            this.state.playListData.map((track, i) => {
-              if (track.track.preview_url) {
+          <img src={this.state.albumImgUrl} alt="album Img" />
+          {this.state.albumSongs &&
+            this.state.albumSongs.map((track, i) => {
+              if (track.preview_url) {
                 return (
                   <div
                     className="home-image-container"
                     key={i}
-                    onClick={() =>
-                      this.playAudio(track.track.preview_url, track.track.id)
-                    }
+                    onClick={() => this.playAudio(track.preview_url, track.id)}
                   >
-                    <img
-                      src={track.track.album.images[0].url}
-                      alt=""
-                      style={{ width: "100%" }}
-                    />
-                    <div className="track-play">
-                      <div className="track-play-inner">
-                        {this.state.playingUrl === track.track.preview_url ? (
+                    <div>
+                      <div>
+                        {this.state.playingUrl === track.preview_url ? (
                           <span>| |</span>
                         ) : (
                           <span>&#9654;</span>
@@ -91,7 +89,7 @@ class Playlist extends Component {
                       </div>
                     </div>
                     <div className="category-text">
-                      <h2>{track.track.name}</h2>
+                      <h2>{track.name}</h2>
                     </div>
                   </div>
                 );
@@ -109,4 +107,4 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   { addRctPlayed }
-)(Playlist);
+)(AlbumSearch);

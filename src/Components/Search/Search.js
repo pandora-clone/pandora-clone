@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 
 import { addFavList } from "../../redux/favReducer";
 import { addRctPlayed } from "../../redux/rctPlayedReducer";
+import {
+  getAlbums,
+  getTracks,
+  getPlaylists,
+  getArtists
+} from "../../redux/searchReducer";
 
 const spotifyApi = new SpotifyWebApi();
 class Search extends Component {
@@ -11,95 +18,137 @@ class Search extends Component {
     super();
     this.state = {
       searchTerm: "",
-      searchAlbums: [],
-      searchArtists: [],
-      searchPlaylist: [],
-      searchTracks: [],
       user_id: null
     };
   }
 
-  handleInputChange = e => {
-    console.log(e.target.value);
+  handleSearch = e => {
+    // console.log(e.target.value);
+    // e.preventDefault();
     this.setState({
       searchTerm: e.target.value
     });
+    this.props.getAlbums(this.state.searchTerm);
+    this.props.getArtists(this.state.searchTerm);
+    this.props.getPlaylists(this.state.searchTerm);
+    this.props.getTracks(this.state.searchTerm);
+  };
+
+  submitSearch = e => {
+    console.log(e.key);
+    if (e.key === "Enter") {
+      this.props.getAlbums(this.state.searchTerm);
+      this.props.getArtists(this.state.searchTerm);
+      this.props.getPlaylists(this.state.searchTerm);
+      this.props.getTracks(this.state.searchTerm);
+    }
   };
 
   getMe = () => {
     spotifyApi.getMe().then(response => {
-      console.log(response.id);
+      // console.log(response.id);
       this.setState({
         user_id: response.id
       });
     });
-  };
-  search = () => {
-    spotifyApi
-      .search(this.state.searchTerm, ["album", "artist", "playlist", "track"], {
-        limit: 10
-      })
-      .then(response => {
-        console.log(response);
-        this.setState({
-          searchAlbums: response.albums.items,
-          searchArtists: response.artists.items,
-          searchPlaylist: response.playlists.items,
-          searchTracks: response.tracks.items
-        });
-      });
   };
 
   componentDidMount() {
     this.getMe();
   }
 
+  playAudio(previewUrl, trackId) {
+    let audio = new Audio(previewUrl);
+    if (!this.state.playing) {
+      audio.play();
+      this.setState({
+        playing: true,
+        playingUrl: previewUrl,
+        audio
+      });
+      this.props.addRctPlayed(trackId);
+    } else {
+      if (this.state.playingUrl === previewUrl) {
+        this.state.audio.pause();
+        this.setState({
+          playing: false
+        });
+      } else {
+        this.state.audio.pause();
+        audio.play();
+        this.setState({
+          playingUrl: previewUrl,
+          audio
+        });
+      }
+    }
+  }
+
   render() {
-    console.log("check here", this.props);
-    console.log("search state", this.state);
-    const searchAlbumsToDisplay = this.state.searchAlbums
+    // console.log("check here", this.props);
+    // console.log("search state", this.state);
+    const searchAlbumsToDisplay = this.props.searchReducer.searchAlbums
       .filter(album => album.images[0])
-      .map(album => {
+      .map((album, i) => {
         return (
-          <div key={album.id}>
-            <img src={album.images[0].url} alt={album.name} />
-            <h3>{album.name}</h3>
+          <div key={i}>
+            <Link to={`/album/${album.id}`}>
+              <img src={album.images[0].url} alt={album.name} />
+              <h3>{album.name}</h3>
+            </Link>
           </div>
         );
       });
-    const searchArtistsToDisplay = this.state.searchArtists
+    const searchArtistsToDisplay = this.props.searchReducer.searchArtists
       .filter(artist => {
         return artist.images[0];
       })
       .map(artist => {
-        console.log(typeof artist.images[0].url);
+        // console.log(typeof artist.images[0].url);
         return (
           <div key={artist.id}>
-            <img src={artist.images[0].url} alt={artist.name} />
-            <h3>{artist.name}</h3>
+            <Link to={`/artist/${artist.id}`}>
+              <img
+                className="search-artist-img"
+                src={artist.images[0].url}
+                alt={artist.name}
+              />
+              <h3>{artist.name}</h3>
+            </Link>
           </div>
         );
       });
-    const searchPlaylistToDisplay = this.state.searchPlaylist
+    const searchPlaylistToDisplay = this.props.searchReducer.searchPlaylists
       .filter(playlist => playlist.images[0])
       .map(playlist => {
         return (
           <div key={playlist.id}>
-            <img src={playlist.images[0].url} alt={playlist.name} />
-            <h3>{playlist.name}</h3>
+            <Link to={`/playlist/${playlist.id}`}>
+              <img src={playlist.images[0].url} alt={playlist.name} />
+              <h3>{playlist.name}</h3>
+            </Link>
           </div>
         );
       });
-    const searchTracksToDisplay = this.state.searchTracks
+    const searchTracksToDisplay = this.props.searchReducer.searchTracks
       .filter(track => track.album.images[0] && track.preview_url !== null)
       .map((track, i) => {
         return (
           <div key={i}>
-            <img src={track.album.images[0].url} alt={track.name} />
+            <div className="search-track-play">
+              <div
+                className="search-track-play-inner"
+                onClick={() => this.playAudio(track.preview_url, track.id)}
+              >
+                {this.state.playingUrl === track.preview_url ? (
+                  <span>| |</span>
+                ) : (
+                  <span>&#9654;</span>
+                )}
+              </div>
+              <img src={track.album.images[0].url} alt={track.name} />
+            </div>
             <h3>{track.name}</h3>
-            <audio onClick={() => this.props.addRctPlayed(track.id)} controls>
-              <source src={track.preview_url} type="audio/mpeg" />
-            </audio>
 
             <button
               onClick={() =>
@@ -125,27 +174,43 @@ class Search extends Component {
         <input
           className="searchInput"
           value={this.state.searchTerm}
-          onChange={this.handleInputChange}
+          onChange={this.handleSearch}
+          onKeyPress={e => this.submitSearch(e)}
         />
-        <button className="searchButton" onClick={this.search}>
-          Search
-        </button>
-        <h1> TRACKS </h1>
-        <div className="searched-tracks result-box">
-          {searchTracksToDisplay}
-        </div>
-        <h1> ALBUMS </h1>
-        <div className="searched-albums result-box">
-          {searchAlbumsToDisplay}
-        </div>
-        <h1> ARTISTS</h1>
-        <div className="searched-artists result-box">
-          {searchArtistsToDisplay}
-        </div>
-        <h1>PLAYLISTS</h1>
-        <div className="searched-playlists result-box">
-          {searchPlaylistToDisplay}
-        </div>
+
+        {this.props.searchReducer.searchTracks[0] ? (
+          <div>
+            <h1> TRACKS </h1>
+            <div className="searched-tracks result-box">
+              {searchTracksToDisplay}
+            </div>
+          </div>
+        ) : null}
+        {this.props.searchReducer.searchAlbums[0] ? (
+          <div>
+            <h1> ALBUMS </h1>
+            <div className="searched-albums result-box">
+              {searchAlbumsToDisplay}
+            </div>
+          </div>
+        ) : null}
+        {this.props.searchReducer.searchArtists[0] ? (
+          <div>
+            <h1> ARTISTS</h1>
+            <div className="searched-artists result-box">
+              {searchArtistsToDisplay}
+            </div>
+          </div>
+        ) : null}
+
+        {this.props.searchReducer.searchPlaylists[0] ? (
+          <div>
+            <h1>PLAYLISTS</h1>
+            <div className="searched-playlists result-box">
+              {searchPlaylistToDisplay}
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -157,6 +222,10 @@ export default connect(
   mapStateToProps,
   {
     addFavList,
-    addRctPlayed
+    addRctPlayed,
+    getAlbums,
+    getTracks,
+    getPlaylists,
+    getArtists
   }
 )(Search);

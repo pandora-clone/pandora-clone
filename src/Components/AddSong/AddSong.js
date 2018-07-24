@@ -52,6 +52,7 @@ class AddSong extends Component {
     }
 
     console.log("Format", file[0].type);
+    console.log(this)
     const uploadTask = this.storageRef
       .child(this.state.user.id)
       .child(file[0].name)
@@ -82,6 +83,7 @@ class AddSong extends Component {
 
   handleSubmit(event) {
     const file = event.target.files[0];
+    // console.log(this)
     const uploadTask = this.storageRef
       .child(file.name)
       .put(file, { contentType: file.type });

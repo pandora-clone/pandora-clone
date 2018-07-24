@@ -10,11 +10,37 @@
   text-align: center;
   margin: 10px;
   width: 200px;
-  border-radius: 50%;
 }
 
-.fav-songs-container {
+.sub-songs-container {
+  margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  text-align: center;
+}
+.song-track-play {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .song-track-play-inner {
+    position: absolute;
+    text-align: center;
+    font-size: 25px;
+    background-color: black;
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    color: white;
+    padding-top: 13px;
+    margin-left: auto;
+    z-index: 10;
+    opacity: 0;
+  }
+  .song-track-play-inner:hover {
+    opacity: 0.8;
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+  }
 }
