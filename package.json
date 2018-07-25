@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/free-regular-svg-icons": "^5.2.0",
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "0.1.0-11",
     "axios": "^0.18.0",
@@ -41,5 +42,8 @@
     "watch": "node-sass sass/main.scss src/App.css -w",
     "compile:sass": "node-sass sass/main.scss src/App.css"
   },
-  "proxy": "http://localhost:8888"
+  "proxy": "http://localhost:8888",
+  "devDependencies": {
+    "cypress": "^3.0.2"
+  }
 }

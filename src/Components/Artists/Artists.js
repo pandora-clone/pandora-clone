@@ -24,7 +24,7 @@ class Artist extends Component {
           return null;
         }
       });
-    console.log("look here....... ", artistIds);
+    // console.log("look here....... ", artistIds);
     spotifyApi.getArtists(artistIds, { limit: 20 }).then(response => {
       console.log(response);
       this.setState({ artists: response.artists });
@@ -38,25 +38,28 @@ class Artist extends Component {
   }
 
   render() {
-    console.log("artist page:", this.props);
-    console.log(this.state);
+    // console.log("artist page:", this.props);
+    // console.log(this.state);
 
     const artistToDisplay = this.state.artists.map((artist, i) => {
       return (
         <div key={i}>
-          <Link to={`/artist/${artist.id}`}>
-            <h1 className="artistName">{artist.name}</h1>
-            <img
-              className="artistImage"
-              src={artist.images[0].url}
-              alt={artist.name}
-            />
-          </Link>
-          <p className="artistFollowers">followers: {artist.followers.total}</p>
+          <div className="home-image-container">
+            <Link to={`/artist/${artist.id}`}>
+              <img
+                src={artist.images[0].url}
+                style={{ width: "100%" }}
+                alt={artist.name}
+              />
+            </Link>
+            <div className="category-text">
+              <h2>{artist.name}</h2>
+            </div>
+          </div>
         </div>
       );
     });
-    return <div className="artistWrapper">{artistToDisplay}</div>;
+    return <div className="category-wrapper">{artistToDisplay}</div>;
   }
 }
 

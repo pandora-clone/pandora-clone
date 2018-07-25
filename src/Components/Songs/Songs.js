@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import SpotifyWebApi from "spotify-web-api-js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { getFavList, deleteFavList } from "../../redux/favReducer";
 import { getRctPlayed } from "../../redux/rctPlayedReducer";
@@ -79,7 +81,12 @@ class Songs extends Component {
     console.log("songs page:", this.props);
     const rctListToDisplay = this.state.rctList.map((song, i) => {
       return (
-        <div key={i}>
+        <div key={i} className="home-image-container">
+          <img
+            src={song.album.images[0].url}
+            alt={song.name}
+            style={{ width: "100%" }}
+          />
           <div
             className="track-play"
             onClick={() => this.playAudio(song.preview_url)}
@@ -91,60 +98,58 @@ class Songs extends Component {
                 <span>&#9654;</span>
               )}
             </div>
-            <img
-              className="songs-img-container"
-              src={song.album.images[0].url}
-              alt={song.name}
-              // style={{ width: "100%" }}
-            />
           </div>
-          <p>{song.name}</p>
+          <div className="category-text">
+            <h2>{song.name}</h2>
+          </div>
         </div>
       );
     });
 
     const favListToDisplay = this.props.favReducer.favList.map((favSong, i) => {
       return (
-        <div key={i}>
+        <div key={i} className="home-image-container">
           <div
-            className="song-track-play"
-            onClick={() => this.playAudio(favSong.preview_url)}
-          >
-            <div className="song-track-play-inner">
-              {this.state.playingUrl === favSong.preview_url ? (
-                <span>| |</span>
-              ) : (
-                <span>&#9654;</span>
-              )}
-            </div>
-            <img
-              className="songs-img-container"
-              src={favSong.img}
-              alt={favSong.song_name}
-              // style={{ width: "100%" }}
-            />
-          </div>
-          <p>{favSong.song_name}</p>
-          <button
+            className="delete-icon"
             onClick={() =>
               this.props
                 .deleteFavList(favSong.id)
                 .then(() => this.props.getFavList(this.state.user_id))
             }
           >
-            Delete
-          </button>
+            <FontAwesomeIcon icon={faTimes} />
+          </div>
+          <img
+            src={favSong.img}
+            alt={favSong.song_name}
+            style={{ width: "100%" }}
+          />
+          <div className="track-play">
+            <div
+              className="track-play-inner"
+              onClick={() => this.playAudio(favSong.preview_url)}
+            >
+              {this.state.playingUrl === favSong.preview_url ? (
+                <span>||</span>
+              ) : (
+                <span>&#9654;</span>
+              )}
+            </div>
+          </div>
+          <div className="category-text">
+            <h2>{favSong.song_name}</h2>
+          </div>
         </div>
       );
     });
 
     return (
-      <div className="songs-container">
-        <h2>Your favorite List</h2>
-        <div className="sub-songs-container">{favListToDisplay}</div>
-        <h2>Recently played</h2>
-        <div className="sub-songs-container"> {rctListToDisplay}</div>
-      </div>
+      <Fragment>
+        <h1 className="artist-track-title">Favorites List</h1>
+        <div className="category-wrapper">{favListToDisplay}</div>
+        <h1 className="artist-track-title">Recently Played</h1>
+        <div className="category-wrapper">{rctListToDisplay}</div>
+      </Fragment>
     );
   }
 }

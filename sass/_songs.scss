@@ -2,8 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px;
+  margin-top: 10vh;
 }
+
+// .songsTitle {
+//   position: relative;
+//   top: 10vh;
+//   left: 38vw;
+//   // margin-top: 100px;
+//   border-bottom: 3px solid #0c7d4373;
+//   text-align: center;
+//   width: 30vw;
+// }
 
 .songs-img-container {
   position: relative;
@@ -12,12 +22,29 @@
   width: 200px;
 }
 
+.delete-icon {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  height: 2.5vh;
+  padding: 0 5px;
+  font-size: 1.2rem;
+  transition-duration: 0.3s;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: #4e4e4e;
+}
+.delete-icon:hover {
+  color: red;
+  background-color: white;
+  border: 2px solid red;
+}
 .sub-songs-container {
-  margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  text-align: center;
+  margin-top: 10px;
+  width: 100vw;
 }
 .song-track-play {
   position: relative;
