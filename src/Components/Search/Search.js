@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import SpotifyWebApi from "spotify-web-api-js";
 
-import { addFavList } from "../../redux/favReducer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
+import { addFavList, getFavList } from "../../redux/favReducer";
 import { addRctPlayed } from "../../redux/rctPlayedReducer";
 import {
   getAlbums,
@@ -19,8 +22,33 @@ class Search extends Component {
     this.state = {
       searchTerm: "",
       user_id: null
+      // liked: false
     };
   }
+
+  handleFav = (
+    user_id,
+    track_name,
+    artists_name,
+    img_url,
+    preview_url,
+    album_id,
+    artists_id,
+    track_id
+  ) => {
+    this.props
+      .addFavList(
+        user_id,
+        track_name,
+        artists_name,
+        img_url,
+        preview_url,
+        album_id,
+        artists_id,
+        track_id
+      )
+      .then(() => this.props.getFavList(user_id));
+  };
 
   handleSearch = e => {
     // console.log(e.target.value);
@@ -85,16 +113,23 @@ class Search extends Component {
   }
 
   render() {
-    // console.log("check here", this.props);
+    console.log("check here", this.props);
+    console.log("track id", this.props.favReducer.favList);
     // console.log("search state", this.state);
+    const checkFavList = this.props.favReducer.favList.map((item, i) => {
+      return item.track_id;
+    });
+    console.log(checkFavList);
     const searchAlbumsToDisplay = this.props.searchReducer.searchAlbums
       .filter(album => album.images[0])
       .map((album, i) => {
         return (
           <div key={i}>
             <Link to={`/album/${album.id}`}>
-              <img src={album.images[0].url} alt={album.name} />
-              <h3>{album.name}</h3>
+              <div className="search-img-box">
+                <img src={album.images[0].url} alt={album.name} />
+                <h3>{album.name}</h3>
+              </div>
             </Link>
           </div>
         );
@@ -108,12 +143,14 @@ class Search extends Component {
         return (
           <div key={artist.id}>
             <Link to={`/artist/${artist.id}`}>
-              <img
-                className="search-artist-img"
-                src={artist.images[0].url}
-                alt={artist.name}
-              />
-              <h3>{artist.name}</h3>
+              <div className="search-img-box">
+                <img
+                  className="search-artist-img"
+                  src={artist.images[0].url}
+                  alt={artist.name}
+                />
+                <h3>{artist.name}</h3>
+              </div>
             </Link>
           </div>
         );
@@ -124,8 +161,10 @@ class Search extends Component {
         return (
           <div key={playlist.id}>
             <Link to={`/playlist/${playlist.id}`}>
-              <img src={playlist.images[0].url} alt={playlist.name} />
-              <h3>{playlist.name}</h3>
+              <div className="search-img-box">
+                <img src={playlist.images[0].url} alt={playlist.name} />
+                <h3>{playlist.name}</h3>
+              </div>
             </Link>
           </div>
         );
@@ -147,25 +186,29 @@ class Search extends Component {
                 )}
               </div>
               <img src={track.album.images[0].url} alt={track.name} />
+              <h3>{track.name}</h3>
+              <button
+                className="add-fav-icon"
+                onClick={() =>
+                  this.handleFav(
+                    this.state.user_id,
+                    track.name,
+                    track.artists[0].name,
+                    track.album.images[0].url,
+                    track.preview_url,
+                    track.album.id,
+                    track.album.artists[0].id,
+                    track.id
+                  )
+                }
+              >
+                {checkFavList.includes(track.id) ? (
+                  <FontAwesomeIcon icon={heartSolid} />
+                ) : (
+                  <FontAwesomeIcon icon={heartRegular} />
+                )}
+              </button>
             </div>
-            <h3>{track.name}</h3>
-
-            <button
-              onClick={() =>
-                this.props.addFavList(
-                  this.state.user_id,
-                  track.name,
-                  track.artists[0].name,
-                  track.album.images[0].url,
-                  track.preview_url,
-                  track.album.id,
-                  track.album.artists[0].id,
-                  track.id
-                )
-              }
-            >
-              Add to Fav
-            </button>
           </div>
         );
       });
@@ -221,6 +264,7 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
+    getFavList,
     addFavList,
     addRctPlayed,
     getAlbums,

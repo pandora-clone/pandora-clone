@@ -24,7 +24,7 @@ class Artist extends Component {
           return null;
         }
       });
-    console.log("look here....... ", artistIds);
+    // console.log("look here....... ", artistIds);
     spotifyApi.getArtists(artistIds, { limit: 20 }).then(response => {
       console.log(response);
       this.setState({ artists: response.artists });
@@ -38,8 +38,8 @@ class Artist extends Component {
   }
 
   render() {
-    console.log("artist page:", this.props);
-    console.log(this.state);
+    // console.log("artist page:", this.props);
+    // console.log(this.state);
 
     const artistToDisplay = this.state.artists.map((artist, i) => {
       return (
