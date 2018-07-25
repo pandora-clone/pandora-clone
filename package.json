@@ -42,5 +42,8 @@
     "watch": "node-sass sass/main.scss src/App.css -w",
     "compile:sass": "node-sass sass/main.scss src/App.css"
   },
-  "proxy": "http://localhost:8888"
+  "proxy": "http://localhost:8888",
+  "devDependencies": {
+    "cypress": "^3.0.2"
+  }
 }
