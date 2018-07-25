@@ -109,14 +109,15 @@ class Songs extends Component {
     const favListToDisplay = this.props.favReducer.favList.map((favSong, i) => {
       return (
         <div key={i} className="home-image-container">
-          <div className="delete-icon">
-          <FontAwesomeIcon 
-            icon={faTimes}
-            onClick={() =>
+          <div className="delete-icon"
+              onClick={() =>
               this.props
               .deleteFavList(favSong.id)
               .then(() => this.props.getFavList(this.state.user_id))
-            }/>
+            }>
+          <FontAwesomeIcon 
+            icon={faTimes}
+            />
             </div>
           <img
             src={favSong.img}
