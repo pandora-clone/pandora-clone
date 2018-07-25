@@ -22,7 +22,10 @@ class AddSong extends Component {
       imageUrl: "",
       user: null,
       image: [],
-      song: []
+      song: [],
+      playingUrl: "",
+      audio: null,
+      playing: false
     };
 
     this.userRef = database.ref("/users");
@@ -52,7 +55,7 @@ class AddSong extends Component {
     }
 
     console.log("Format", file[0].type);
-    console.log(this)
+    console.log(this);
     const uploadTask = this.storageRef
       .child(this.state.user.id)
       .child(file[0].name)
@@ -98,6 +101,32 @@ class AddSong extends Component {
     this.setState({
       [inputType]: event.target.value
     });
+  }
+
+  playAudio(previewUrl) {
+    let audio = new Audio(previewUrl);
+    if (!this.state.playing) {
+      audio.play();
+      this.setState({
+        playing: true,
+        playingUrl: previewUrl,
+        audio
+      });
+    } else {
+      if (this.state.playingUrl === previewUrl) {
+        this.state.audio.pause();
+        this.setState({
+          playing: false
+        });
+      } else {
+        this.state.audio.pause();
+        audio.play();
+        this.setState({
+          playingUrl: previewUrl,
+          audio
+        });
+      }
+    }
   }
 
   addSong() {
@@ -205,13 +234,18 @@ class AddSong extends Component {
                 <p>Select audio to upload.</p>
               </Dropzone>
             ) : (
-              <audio className="song-uploaded" controls>
-                <source
-                  className="player"
-                  src={this.state.song[0].preview}
-                  type="audio/mp3"
-                />
-              </audio>
+              <div
+                className="single-song-player "
+                onClick={() => this.playAudio(this.state.song[0].preview)}
+              >
+                <div className="song-icon-player">
+                  {this.state.playingUrl === this.state.song[0].preview ? (
+                    <span>||</span>
+                  ) : (
+                    <span>&#9654;</span>
+                  )}
+                </div>
+              </div>
             )}
           </div>
         </div>

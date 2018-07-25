@@ -82,15 +82,15 @@ class Songs extends Component {
     const rctListToDisplay = this.state.rctList.map((song, i) => {
       return (
         <div key={i} className="home-image-container">
-            <img
-              src={song.album.images[0].url}
-              alt={song.name}
-              style={{ width: "100%" }}
-            />
-            <div
-              className="track-play"
-              onClick={() => this.playAudio(song.preview_url)}
-            >
+          <img
+            src={song.album.images[0].url}
+            alt={song.name}
+            style={{ width: "100%" }}
+          />
+          <div
+            className="track-play"
+            onClick={() => this.playAudio(song.preview_url)}
+          >
             <div className="track-play-inner">
               {this.state.playingUrl === song.preview_url ? (
                 <span>| |</span>
@@ -109,16 +109,16 @@ class Songs extends Component {
     const favListToDisplay = this.props.favReducer.favList.map((favSong, i) => {
       return (
         <div key={i} className="home-image-container">
-          <div className="delete-icon"
-              onClick={() =>
+          <div
+            className="delete-icon"
+            onClick={() =>
               this.props
-              .deleteFavList(favSong.id)
-              .then(() => this.props.getFavList(this.state.user_id))
-            }>
-          <FontAwesomeIcon 
-            icon={faTimes}
-            />
-            </div>
+                .deleteFavList(favSong.id)
+                .then(() => this.props.getFavList(this.state.user_id))
+            }
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </div>
           <img
             src={favSong.img}
             alt={favSong.song_name}
@@ -127,14 +127,13 @@ class Songs extends Component {
           <div className="track-play">
             <div
               className="track-play-inner"
-              onClick={() => this.playAudio(favSong.preview_url)
-              }
-              >
-                {this.state.playingUrl === favSong.preview_url ? (
-                  <span>||</span>
-                ) : (
-                  <span>&#9654;</span>
-                )}
+              onClick={() => this.playAudio(favSong.preview_url)}
+            >
+              {this.state.playingUrl === favSong.preview_url ? (
+                <span>||</span>
+              ) : (
+                <span>&#9654;</span>
+              )}
             </div>
           </div>
           <div className="category-text">
