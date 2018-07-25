@@ -1,6 +1,8 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import SpotifyWebApi from "spotify-web-api-js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { getFavList, deleteFavList } from "../../redux/favReducer";
 import { getRctPlayed } from "../../redux/rctPlayedReducer";
@@ -106,6 +108,15 @@ class Songs extends Component {
     const favListToDisplay = this.props.favReducer.favList.map((favSong, i) => {
       return (
         <div key={i} className="home-image-container">
+          <div className="delete-icon">
+          <FontAwesomeIcon 
+            icon={faTimes}
+            onClick={() =>
+              this.props
+              .deleteFavList(favSong.id)
+              .then(() => this.props.getFavList(this.state.user_id))
+            }/>
+            </div>
           <img
             src={favSong.img}
             alt={favSong.song_name}
@@ -127,15 +138,6 @@ class Songs extends Component {
           <div className="category-text">
             <h2>{favSong.song_name}</h2>
           </div>
-          <button
-            onClick={() =>
-              this.props
-                .deleteFavList(favSong.id)
-                .then(() => this.props.getFavList(this.state.user_id))
-            }
-          >
-            Delete
-          </button>
         </div>
       );
     });

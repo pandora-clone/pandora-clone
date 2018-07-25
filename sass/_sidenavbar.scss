@@ -8,13 +8,16 @@
   z-index: 5;
 }
 .logoContainer {
+  display: flex;
+  align-items: center;
   padding-bottom: 3vh;
 }
 .logo {
   // position: absolute;
   // top: -2.5vh;
   font-size: 2vh; //if name is forte, could use the font amaranth bold
-  left: 2vw;
+  // left: 2vw;
+  margin-left: 1.8vw;
   padding: 3vh;
   height: 9vh;
   width: 9vh;
@@ -31,15 +34,15 @@
   padding-bottom: 60vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
 }
-.search{
-  // margin-top: 3vh;
-  // font-size: 2vh;
-  height: 7vh;
-  width: 7vh;
-  padding: 2vh;
-}
+// .search{
+//   // margin-top: 3vh;
+//   // font-size: 2vh;
+//   height: 7vh;
+//   width: 7vh;
+//   padding: 2vh;
+// }
 .navItemsContainer {
   // margin-top: 5vh;
   display: flex;
@@ -57,7 +60,15 @@
   color: white;
   background-color: #0c7d4373;
 }
-.sideNavItems:active {
-  color: white;
-  background-color: #0c7d4373;
+.search-icon {
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color:rgb(163, 163, 163);
+  transition-duration: 0.3s;
+  margin-left: 1vw;
 }
+.search-icon:hover {
+  color: white;
+}
+

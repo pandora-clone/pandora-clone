@@ -95,7 +95,7 @@ class AlbumSearch extends Component {
                         )}
                       </div>
                     <div className="trackNames">
-                      <h2>{track.name}</h2>
+                      <h2>{track.track_number} - {track.name}</h2>
                     </div>
                   </div>
                 );
