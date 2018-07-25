@@ -112,6 +112,7 @@ a {
 .search-wrapper {
   margin-left: 120px; }
   .search-wrapper h1 {
+    text-align: center;
     padding: 40px; }
   .search-wrapper img {
     position: relative;
@@ -135,9 +136,6 @@ a {
     font-size: 40px;
     color: white; }
 
-.search-artist-img {
-  border-radius: 50%; }
-
 .result-box {
   display: grid;
   grid: auto-flow/repeat(auto-fill, minmax(300px, 1fr));
@@ -147,6 +145,25 @@ a {
     display: flex;
     justify-content: center;
     align-items: center; }
+    .result-box .search-track-play h3 {
+      position: absolute;
+      bottom: 20px;
+      width: 250px;
+      text-align: center;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.161);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.5em; }
+    .result-box .search-track-play .add-fav-icon {
+      position: absolute;
+      top: 20px;
+      font-size: 25px;
+      right: 20%;
+      background-color: transparent;
+      border: none;
+      color: white; }
     .result-box .search-track-play .search-track-play-inner {
       position: absolute;
       text-align: center;
@@ -164,6 +181,34 @@ a {
       opacity: 0.8;
       animation-name: fade-in;
       animation-duration: 0.5s; }
+  .result-box .search-track-play:hover {
+    filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315)); }
+    .result-box .search-track-play:hover h3 {
+      color: white;
+      background-color: #0c7d4373; }
+
+.result-box .search-img-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .result-box .search-img-box h3 {
+    position: absolute;
+    bottom: 20px;
+    width: 250px;
+    text-align: center;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.161);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5em; }
+
+.result-box .search-img-box:hover {
+  filter: drop-shadow(0 0 0.35rem rgba(196, 196, 196, 0.315)); }
+  .result-box .search-img-box:hover h3 {
+    color: white;
+    background-color: #0c7d4373; }
 
 .searchButton {
   font-size: 2vh;
