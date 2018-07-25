@@ -44,22 +44,22 @@ class Albums extends Component {
     const albumsToDisplay = this.state.albums.map((album, i) => {
       return (
         <div key={i}>
-          <div className="albumImage">
-            <Link to={`/album/${album.id}`}>
-              <img
-                src={album.images[1].url}
-                style={{ width: "100%" }}
-                alt={album.name}
-              />
-            </Link>
-          </div>
-          <div className="albumName">
-            <span>{album.name}</span>
+          <div className="home-image-container">
+              <Link to={`/album/${album.id}`}>
+                <img
+                  src={album.images[1].url}
+                  style={{ width: "100%" }}
+                  alt={album.name}
+                />
+              </Link>
+            <div className="category-text">
+              <h2>{album.name}</h2>
+            </div>
           </div>
         </div>
       );
     });
-    return <div className="albumWrapper">{albumsToDisplay}</div>;
+    return <div className="category-wrapper">{albumsToDisplay}</div>;
   }
 }
 

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class SideNavBar extends Component {
   render() {
@@ -7,9 +9,13 @@ class SideNavBar extends Component {
       <div className="sideBarContainer">
         <div className="sideNavContainer">
           <div className="logoContainer">
-            <Link to="/" className="logo">forte</Link>
+            <Link to="/" className="logo">swafli</Link>
           </div>
-          <Link to="/search"><img className="search" src="http://www.clker.com/cliparts/n/U/H/1/H/u/search-icon-white-one-md.png" alt=""/>
+          <Link to="/search">
+          <FontAwesomeIcon 
+            className="search-icon"
+            icon={faSearch}
+            />
           </Link>
           <div className="navItemsContainer">
             {/* <button className="sideNavItems">Playlists</button> */}

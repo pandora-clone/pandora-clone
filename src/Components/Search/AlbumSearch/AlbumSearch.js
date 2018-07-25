@@ -12,7 +12,9 @@ class AlbumSearch extends Component {
       playingUrl: "",
       audio: null,
       playing: false,
-      albumImgUrl: ""
+      albumImgUrl: "",
+      artist: "",
+      albumName: ""
     };
   }
 
@@ -56,40 +58,44 @@ class AlbumSearch extends Component {
 
   getAlbum = () => {
     spotifyApi.getAlbum(this.props.match.params.id).then(response => {
-      // console.log("album response: ", response);
+      console.log("album response: ", response);
       this.setState({
-        albumImgUrl: response.images[0].url
+        albumImgUrl: response.images[0].url,
+        artist: response.artists[0].name,
+        albumName: response.name
       });
     });
   };
 
   render() {
     // console.log("albumsearch page:   ", this.props);
-    // console.log(this.state);
+    console.log(this.state);
     return (
-      <div>
-        <div className="category-wrapper">
+      <div className="albumSearchWrapper">
+        <div className="albumInfo">
           <img src={this.state.albumImgUrl} alt="album Img" />
+          <h1>{this.state.albumName}</h1>
+          <h3>{this.state.artist}</h3>
+        </div>
+        <div className="allSongContainer">
           {this.state.albumSongs &&
             this.state.albumSongs.map((track, i) => {
               if (track.preview_url) {
                 return (
                   <div
-                    className="home-image-container"
-                    key={i}
-                    onClick={() => this.playAudio(track.preview_url, track.id)}
+                  className="eachSongContainer"
+                  key={i}
+                  onClick={() => this.playAudio(track.preview_url, track.id)}
                   >
-                    <div>
-                      <div>
+                      <div className="playPause">
                         {this.state.playingUrl === track.preview_url ? (
-                          <span>| |</span>
+                          <span>||</span>
                         ) : (
                           <span>&#9654;</span>
                         )}
                       </div>
-                    </div>
-                    <div className="category-text">
-                      <h2>{track.name}</h2>
+                    <div className="trackNames">
+                      <h2>{track.track_number} - {track.name}</h2>
                     </div>
                   </div>
                 );
