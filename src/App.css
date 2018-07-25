@@ -367,6 +367,27 @@ a {
   margin-left: 20%;
   margin-right: 20%; }
 
+.single-song-player {
+  display: inline-block;
+  margin-left: 5vw;
+  margin-top: 80px;
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  cursor: pointer; }
+
+.single-song-player:hover {
+  background-color: green; }
+
+.song-icon-player {
+  margin-top: 10%;
+  margin-left: 15%;
+  position: absolute;
+  cursor: pointer; }
+
 .addsong-category-wrapper {
   display: flex;
   flex-wrap: wrap;

@@ -9,21 +9,27 @@ class SideNavBar extends Component {
       <div className="sideBarContainer">
         <div className="sideNavContainer">
           <div className="logoContainer">
-            <Link to="/" className="logo">swafli</Link>
+            <Link to="/" className="logo">
+              swafli
+            </Link>
           </div>
           <Link to="/search">
-          <FontAwesomeIcon 
-            className="search-icon"
-            icon={faSearch}
-            />
+            <FontAwesomeIcon className="search-icon" icon={faSearch} />
           </Link>
           <div className="navItemsContainer">
             {/* <button className="sideNavItems">Playlists</button> */}
-            <Link to="/artists" className="sideNavItems">Artists</Link>
-            <Link to="/albums" className="sideNavItems">Albums</Link>
-            <Link to="/songs" className="sideNavItems">Songs</Link>
-            <Link to="/genre/:categoryName" className="sideNavItems">Genre</Link>
-            <Link to="/usersongs" className="sideNavItems">New Uploads</Link>
+            <Link to="/artists" className="sideNavItems">
+              Artists
+            </Link>
+            <Link to="/albums" className="sideNavItems">
+              Albums
+            </Link>
+            <Link to="/songs" className="sideNavItems">
+              Songs
+            </Link>
+            <Link to="/usersongs" className="sideNavItems">
+              New Uploads
+            </Link>
           </div>
         </div>
       </div>
