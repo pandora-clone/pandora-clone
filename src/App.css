@@ -74,14 +74,6 @@ a {
   align-items: center;
   margin-top: 10vh; }
 
-.songsTitle {
-  position: relative;
-  left: 38vw;
-  margin-top: 100px;
-  border-bottom: 3px solid #0c7d4373;
-  text-align: center;
-  width: 30vw; }
-
 .songs-img-container {
   position: relative;
   text-align: center;
@@ -618,7 +610,7 @@ a {
 
 .albumInfo {
   margin-top: 5vh;
-  margin-left: 20vw;
+  margin-left: 15vw;
   height: 50vh;
   display: flex;
   flex-direction: column;
@@ -630,25 +622,28 @@ a {
 
 .allSongContainer {
   margin-top: 5vh;
-  margin-left: 5vw;
+  margin-left: 15vw;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  justify-content: space-between; }
 
 .eachSongContainer {
-  float: right;
-  position: relative;
+  display: flex;
   width: 400px;
+  transition-duration: 0.3s;
   cursor: pointer; }
 
-.playPause span {
+.eachSongContainer:hover {
+  background-color: #0c7d4373; }
+
+.playPause {
   position: relative;
-  margin-top: 1vh;
-  margin-right: 5vw; }
+  margin-top: .5vh;
+  margin-left: 2vw; }
 
 .trackNames {
   position: relative;
-  top: -2vh;
-  right: -1vw; }
+  right: -5vw; }
 
 .artist-track-title {
   position: relative;

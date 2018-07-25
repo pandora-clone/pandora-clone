@@ -81,11 +81,16 @@ class Songs extends Component {
     console.log("songs page:", this.props);
     const rctListToDisplay = this.state.rctList.map((song, i) => {
       return (
-        <div key={i}>
-          <div
-            className="track-play"
-            onClick={() => this.playAudio(song.preview_url)}
-          >
+        <div key={i} className="home-image-container">
+            <img
+              src={song.album.images[0].url}
+              alt={song.name}
+              style={{ width: "100%" }}
+            />
+            <div
+              className="track-play"
+              onClick={() => this.playAudio(song.preview_url)}
+            >
             <div className="track-play-inner">
               {this.state.playingUrl === song.preview_url ? (
                 <span>| |</span>
@@ -93,14 +98,10 @@ class Songs extends Component {
                 <span>&#9654;</span>
               )}
             </div>
-            <img
-              className="songs-img-container"
-              src={song.album.images[0].url}
-              alt={song.name}
-              // style={{ width: "100%" }}
-            />
           </div>
-          <p>{song.name}</p>
+          <div className="category-text">
+            <h2>{song.name}</h2>
+          </div>
         </div>
       );
     });
@@ -146,7 +147,7 @@ class Songs extends Component {
       <Fragment>
         <h1 className="artist-track-title">Favorites List</h1>
         <div className="category-wrapper">{favListToDisplay}</div>
-        <h1 className="songsTitle">Recently Played</h1>
+        <h1 className="artist-track-title">Recently Played</h1>
         <div className="category-wrapper">{rctListToDisplay}</div>
       </Fragment>
     );
