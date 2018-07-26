@@ -283,8 +283,10 @@ a {
     flex-direction: column;
     position: fixed;
     bottom: 60px;
-    justify-content: center;
     align-items: center; }
+    .sideBarContainer .topNavContainer a {
+      width: 100%;
+      text-align: center; }
 
 .logoContainer {
   display: flex;
