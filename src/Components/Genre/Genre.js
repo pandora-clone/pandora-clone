@@ -33,6 +33,7 @@ class Genre extends Component {
   render() {
     return (
       <div>
+        <h1 className="page-title"> Top {this.state.category} playlists </h1>
         <div className="category-wrapper">
           {this.state.playList &&
             this.state.playList.map((playlist, i) => {

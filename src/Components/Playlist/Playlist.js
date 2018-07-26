@@ -53,6 +53,8 @@ class Playlist extends Component {
 
   getPlaylistTracks() {
     spotifyApi.getPlaylistTracks("", this.state.playlistId).then(response => {
+      console.log("response: ", response);
+
       this.setState({
         playListData: response.items
       });
@@ -60,10 +62,11 @@ class Playlist extends Component {
   }
 
   render() {
-    // console.log(this.props);
-    // console.log(this.state);
+    console.log(this.props);
+    console.log(this.state);
     return (
       <div>
+        <h1 className="page-title"> Playlist Tracks</h1>
         <div className="category-wrapper">
           {this.state.playListData &&
             this.state.playListData.map((track, i) => {

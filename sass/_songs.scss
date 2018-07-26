@@ -1,19 +1,12 @@
 .songs-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10vh;
+  margin-top: 50px;
 }
 
-// .songsTitle {
-//   position: relative;
-//   top: 10vh;
-//   left: 38vw;
-//   // margin-top: 100px;
-//   border-bottom: 3px solid #0c7d4373;
-//   text-align: center;
-//   width: 30vw;
-// }
+.songs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 .songs-img-container {
   position: relative;

@@ -1,49 +1,46 @@
-.albumSearchWrapper{
-    display: flex;
-    // flex-wrap: wrap;
-    // justify-content: center;
-    margin-top: 10vh;
-    margin-left: 8vw;
+.albumSearchWrapper {
+  display: flex;
+  margin-top: 10vh;
 }
-.albumInfo{
-    margin-top: 5vh;
-    margin-left: 15vw;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.albumInfo {
+  margin-top: 5vh;
+  margin-left: 8vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.albumInfo img{
-    max-height: 40vh;
-    width: auto;
+.albumInfo img {
+  max-height: 40vh;
+  width: auto;
 }
-.allSongContainer{
-    margin-top: 5vh;
-    margin-left: 15vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.allSongContainer {
+  margin-top: 5vh;
+  margin-left: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.eachSongContainer{
-    display: flex;
-    // float: right;
-    // position: relative;
-    // margin: 10px;
-    width: 400px;
-    transition-duration: 0.3s;
-    cursor: pointer;
-    // filter: drop-shadow(0 0 0.2rem rgb(27, 27, 27));
+.eachSongContainer {
+  display: flex;
+  // float: right;
+  // position: relative;
+  // margin: 10px;
+  width: 400px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  // filter: drop-shadow(0 0 0.2rem rgb(27, 27, 27));
 }
-.eachSongContainer:hover{
-    background-color: #0c7d4373;
+.eachSongContainer:hover {
+  background-color: #0c7d4373;
 }
-.playPause{
-    position: relative;
-    margin-top: .5vh;
-    margin-left: 2vw;
+.playPause {
+  position: relative;
+  margin-top: 0.5vh;
+  margin-left: 2vw;
 }
-.trackNames{
-    position: relative;
-    // top: -2vh;
-    right: -5vw;
+.trackNames {
+  position: relative;
+  // top: -2vh;
+  right: -5vw;
 }

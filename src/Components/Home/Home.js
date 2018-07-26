@@ -108,24 +108,27 @@ class Home extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="category-wrapper">
-        {this.state.categories[0] &&
-          this.state.categories.map((category, i) => {
-            return (
-              <div className="home-image-container" key={i}>
-                <Link to={"/genre/" + category.id}>
-                  <img
-                    src={category.icons[0].url}
-                    style={{ width: "100%" }}
-                    alt=""
-                  />
-                </Link>
-                <div className="category-text">
-                  <h2>{category.name}</h2>
+      <div>
+        <h1 className="page-title"> Categories </h1>
+        <div className="category-wrapper">
+          {this.state.categories[0] &&
+            this.state.categories.map((category, i) => {
+              return (
+                <div className="home-image-container" key={i}>
+                  <Link to={"/genre/" + category.id}>
+                    <img
+                      src={category.icons[0].url}
+                      style={{ width: "100%" }}
+                      alt=""
+                    />
+                  </Link>
+                  <div className="category-text">
+                    <h2>{category.name}</h2>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
     );
   }
