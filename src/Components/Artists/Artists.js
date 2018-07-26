@@ -24,7 +24,7 @@ class Artist extends Component {
           return null;
         }
       });
-    // console.log("look here....... ", artistIds);
+    console.log("look here....... ", artistIds);
     spotifyApi.getArtists(artistIds, { limit: 20 }).then(response => {
       console.log(response);
       this.setState({ artists: response.artists });
@@ -38,28 +38,38 @@ class Artist extends Component {
   }
 
   render() {
-    // console.log("artist page:", this.props);
-    // console.log(this.state);
+    console.log("artist page:", this.props);
+    console.log(this.state);
 
-    const artistToDisplay = this.state.artists.map((artist, i) => {
-      return (
-        <div key={i}>
-          <div className="home-image-container">
-            <Link to={`/artist/${artist.id}`}>
-              <img
-                src={artist.images[0].url}
-                style={{ width: "100%" }}
-                alt={artist.name}
-              />
-            </Link>
-            <div className="category-text">
-              <h2>{artist.name}</h2>
+    const artistToDisplay = this.state.artists
+      .filter(
+        (artist, index, self) =>
+          index === self.findIndex(t => t.id === artist.id)
+      )
+      .map((artist, i) => {
+        return (
+          <div key={i}>
+            <div className="home-image-container">
+              <Link to={`/artist/${artist.id}`}>
+                <img
+                  src={artist.images[0].url}
+                  style={{ width: "100%" }}
+                  alt={artist.name}
+                />
+              </Link>
+              <div className="category-text">
+                <h2>{artist.name}</h2>
+              </div>
             </div>
           </div>
-        </div>
-      );
-    });
-    return <div className="category-wrapper">{artistToDisplay}</div>;
+        );
+      });
+    return (
+      <div>
+        <h1 className="page-title"> Your Favorite Artists </h1>
+        <div className="category-wrapper">{artistToDisplay}</div>
+      </div>
+    );
   }
 }
 

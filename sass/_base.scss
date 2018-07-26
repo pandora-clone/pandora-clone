@@ -5,6 +5,7 @@ $font-primary: "Open Sans", sans-serif;
 $font-header: "Lora", serif;
 
 $hover-category-text-color: #0c7d4373;
+$container-margin: 20vw;
 
 *,
 *::before,
@@ -23,7 +24,19 @@ body {
   color: $font-color-primary;
   font-weight: 400;
   line-height: 1.6;
-  background-color: #4e4e4e;
+  background: linear-gradient(#2d474a, #06090a);
+  min-height: 100vh;
+
+  // background-repeat: no-repeat;
+  // background-size: cover;
+}
+.routes-wrapper {
+  margin-left: 15vw;
+}
+.page-title {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 h1,

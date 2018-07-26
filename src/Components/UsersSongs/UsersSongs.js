@@ -98,62 +98,72 @@ class UsersSongs extends Component {
     const { songs } = this.state;
     // const userHasSelected = votes && Object.keys(votes).includes(this.state.user.id);
     return (
-      <div className="category-wrapper">
-        {map(songs, (song, key) => (
-          <div className="song-container" key={key}>
-            {song.votes &&
-            Object.keys(song.votes).includes(this.state.user.id) ? (
-              <div
-                onClick={() => this.handleDeselect(key)}
-                className="like-counter-box"
-              >
-                <span className="like-counter-number">{size(song.votes)}</span>
-                <FontAwesomeIcon className="heart-active" icon={faThumbsUp} />
-              </div>
-            ) : (
-              <div
-                onClick={() => this.handleSelect(key)}
-                className="like-counter-box"
-              >
-                <span className="like-counter-number">{size(song.votes)}</span>
-                <FontAwesomeIcon className="heart-disabled" icon={faThumbsUp} />
-              </div>
-            )}
+      <div>
+        <h1 className="page-title"> Uploaded By Users </h1>
+        <div className="category-wrapper">
+          {map(songs, (song, key) => (
+            <div className="song-container" key={key}>
+              {song.votes &&
+              Object.keys(song.votes).includes(this.state.user.id) ? (
+                <div
+                  onClick={() => this.handleDeselect(key)}
+                  className="like-counter-box"
+                >
+                  <span className="like-counter-number">
+                    {size(song.votes)}
+                  </span>
+                  <FontAwesomeIcon className="heart-active" icon={faThumbsUp} />
+                </div>
+              ) : (
+                <div
+                  onClick={() => this.handleSelect(key)}
+                  className="like-counter-box"
+                >
+                  <span className="like-counter-number">
+                    {size(song.votes)}
+                  </span>
+                  <FontAwesomeIcon
+                    className="heart-disabled"
+                    icon={faThumbsUp}
+                  />
+                </div>
+              )}
 
-            <div
-              className="newUploads-image-container"
-              onClick={() => this.playAudio(song.songUrl)}
-            >
-              <img
-                src={song.imageUrl}
-                alt=""
-                style={{ width: "200px", height: "200px" }}
-              />
-              <div className="track-play">
-                <div className="track-play-user-uploads">
-                  {this.state.playingUrl === song.songUrl ? (
-                    <span>| |</span>
-                  ) : (
-                    <span>&#9654;</span>
-                  )}
+              <div
+                className="newUploads-image-container"
+                onClick={() => this.playAudio(song.songUrl)}
+              >
+                <img
+                  src={song.imageUrl}
+                  alt=""
+                  style={{ width: "200px", height: "200px" }}
+                />
+                <div className="track-play">
+                  <div className="track-play-user-uploads">
+                    {this.state.playingUrl === song.songUrl ? (
+                      <span>| |</span>
+                    ) : (
+                      <span>&#9654;</span>
+                    )}
+                  </div>
+                </div>
+                <div className="song-name-text">
+                  <h2>{song.songName}</h2>
                 </div>
               </div>
-              <div className="song-name-text">
-                <h2>{song.songName}</h2>
+              <div className="song-description ">
+                <div className="song-author">
+                  <h2>{song.author}</h2>
+                </div>
               </div>
             </div>
-            <div className="song-description ">
-              <div className="song-author">
-                <h2>{song.author}</h2>
-              </div>
+          ))}
+          <Link to="/addsong">
+            <div className="add-song-link">
+              <FontAwesomeIcon className="add-plus-sign" icon={faPlus} />
             </div>
-          </div>
-        ))}
-        <Link to="/addsong">
-          <div className="add-song-link">
-            <FontAwesomeIcon className="add-plus-sign" icon={faPlus} />
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
     );
   }

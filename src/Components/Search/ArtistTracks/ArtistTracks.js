@@ -58,9 +58,7 @@ class ArtistTracks extends Component {
     // console.log(this.state);
     return (
       <Fragment>
-        <h1 className="artist-track-title">
-          Top Tracks by {this.state.artist}
-        </h1>
+        <h1 className="page-title">Top Tracks by {this.state.artist}</h1>
         <div className="category-wrapper">
           {this.state.artistTopTracks &&
             this.state.artistTopTracks.map((track, i) => {
