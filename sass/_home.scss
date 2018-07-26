@@ -3,6 +3,8 @@
   text-align: center;
   margin: 10px;
   width: 200px;
+  height: 200px;
+  overflow: hidden;
   cursor: pointer;
   filter: drop-shadow(0 0 0.2rem rgb(27, 27, 27));
 }
@@ -27,15 +29,20 @@
     background-color: $hover-category-text-color;
   }
 }
-.category-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 13vh;
-  margin-left: 8vw;
-  width: 90vw;
-}
-.category {
-  margin-top: 10.5vh;
-  margin-left: 7.5vw;
-}
+// .category-wrapper {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   margin-top: 13vh;
+//   width: 75vw;
+// }
+// .category {
+//   margin-top: 10.5vh;
+//   margin-left: 7.5vw;
+// }
+
+// @media(max-width:1466px){
+// .category-wrapper{
+//   margin-left:
+// }
+// }

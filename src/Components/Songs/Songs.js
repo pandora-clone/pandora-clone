@@ -144,12 +144,12 @@ class Songs extends Component {
     });
 
     return (
-      <Fragment>
-        <h1 className="artist-track-title">Favorites List</h1>
-        <div className="category-wrapper">{favListToDisplay}</div>
-        <h1 className="artist-track-title">Recently Played</h1>
-        <div className="category-wrapper">{rctListToDisplay}</div>
-      </Fragment>
+      <div className="songs-container">
+        <h1 className="page-title">Favorites List</h1>
+        <div className="songs-wrapper">{favListToDisplay}</div>
+        <h1 className="page-title">Recently Played</h1>
+        <div className="songs-wrapper">{rctListToDisplay}</div>
+      </div>
     );
   }
 }

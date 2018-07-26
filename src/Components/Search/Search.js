@@ -218,6 +218,7 @@ class Search extends Component {
           className="searchInput"
           value={this.state.searchTerm}
           onChange={this.handleSearch}
+          placeholder="Search Tracks, Artists, and Albums..."
           onKeyPress={e => this.submitSearch(e)}
         />
 

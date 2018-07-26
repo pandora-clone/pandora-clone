@@ -22,7 +22,7 @@ class Albums extends Component {
   getAlbums = () => {
     const albumIds =
       this.props.favReducer.favList &&
-      this.props.favReducer.favList.map((song, i) => {
+      this.props.favReducer.favList.map(song => {
         if (song.album_id !== null) {
           return song.album_id;
         } else {
@@ -32,7 +32,7 @@ class Albums extends Component {
     console.log("albumIds: ", albumIds);
 
     spotifyApi.getAlbums(albumIds).then(response => {
-      console.log(response);
+      console.log("albums response", response);
       this.setState({
         albums: response.albums
       });
@@ -41,10 +41,14 @@ class Albums extends Component {
 
   render() {
     console.log(this.props);
-    const albumsToDisplay = this.state.albums.map((album, i) => {
-      return (
-        <div key={i}>
-          <div className="home-image-container">
+    const albumsToDisplay = this.state.albums
+      .filter(
+        (album, index, self) => index === self.findIndex(t => t.id === album.id)
+      )
+      .map((album, i) => {
+        return (
+          <div key={i}>
+            <div className="home-image-container">
               <Link to={`/album/${album.id}`}>
                 <img
                   src={album.images[1].url}
@@ -52,14 +56,19 @@ class Albums extends Component {
                   alt={album.name}
                 />
               </Link>
-            <div className="category-text">
-              <h2>{album.name}</h2>
+              <div className="category-text">
+                <h2>{album.name}</h2>
+              </div>
             </div>
           </div>
-        </div>
-      );
-    });
-    return <div className="category-wrapper">{albumsToDisplay}</div>;
+        );
+      });
+    return (
+      <div>
+        <h1 className="page-title"> Your Favorite Albums </h1>
+        <div className="category-wrapper">{albumsToDisplay}</div>
+      </div>
+    );
   }
 }
 
