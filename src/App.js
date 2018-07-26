@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TopNavBar from "./Components/NavBar/TopNavBar";
+// import TopNavBar from "./Components/NavBar/TopNavBar";
 import SideNavBar from "./Components/NavBar/SideNavBar";
 import routes from "./routes";
 
