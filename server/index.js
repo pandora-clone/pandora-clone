@@ -7,6 +7,7 @@ const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 const massive = require("massive");
 const session = require("express-session");
+const path = require('path');
 const port = process.env.PORT || 8888;
 
 const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
@@ -51,7 +52,7 @@ const stateKey = "spotify_auth_state";
 
 const app = express();
 
-app.use(express.static(__dirname + "/public/index.html"));
+app.use( express.static(`${__dirname}/../build`));
 app.use(cors());
 app.use(cookieParser());
 app.use(json());
@@ -153,8 +154,8 @@ app.get("/callback", function(req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          // "http://localhost:3000/#" +
-          "/#" +
+          // "http://localhost:3000/" +
+          "/" +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token
@@ -162,7 +163,7 @@ app.get("/callback", function(req, res) {
         );
       } else {
         res.redirect(
-          "/#" +
+          "/" +
             querystring.stringify({
               error: "invalid_token"
             })
