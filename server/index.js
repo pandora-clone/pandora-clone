@@ -11,7 +11,8 @@ const port = process.env.PORT || 8888;
 
 const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
-const redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
+// const redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
+const redirect_uri = "/callback"
 
 const checkForPlayList = require(`${__dirname}/middlewares/checkForPlayList`);
 const checkForUser = require(`${__dirname}/middlewares/checkForUser`);
@@ -50,7 +51,7 @@ const stateKey = "spotify_auth_state";
 
 const app = express();
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public/index.html"));
 app.use(cors());
 app.use(cookieParser());
 app.use(json());
@@ -97,7 +98,8 @@ app.get("/login", function(req, res) {
 
 app.get("/logout", function(req, res) {
   req.session.destroy(() => {
-    res.redirect("http://localhost:3000/");
+    // res.redirect("http://localhost:3000/");
+    res.redirect("/");
   });
 });
 
@@ -151,7 +153,8 @@ app.get("/callback", function(req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          "http://localhost:3000/#" +
+          // "http://localhost:3000/#" +
+          "/#" +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token
@@ -209,6 +212,10 @@ app.post("/api/recent", addRctPlayed);
 app.get("/api/user", getUser);
 app.post("/api/login", login);
 app.post("/api/logout", logout);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

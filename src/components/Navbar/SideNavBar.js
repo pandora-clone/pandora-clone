@@ -88,7 +88,8 @@ class SideNavBar extends Component {
           </div>
           {this.props.user.user_id ? (
             <a
-              href="http://localhost:8888/logout"
+              // href="http://localhost:8888/logout"
+              href="/logout"
               className="sideNavItems"
               onClick={() =>
                 window.open(
@@ -101,7 +102,10 @@ class SideNavBar extends Component {
               Log Out
             </a>
           ) : (
-            <a href="http://localhost:8888/login" className="sideNavItems">
+            <a 
+            // href="http://localhost:8888/login"
+            href="/login" 
+            className="sideNavItems">
               Log In
             </a>
           )}
