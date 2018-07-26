@@ -14,8 +14,11 @@ $nav-color: #111b1b;
     flex-direction: column;
     position: fixed;
     bottom: 60px;
-    justify-content: center;
     align-items: center;
+    a{
+    width: 100%;
+    text-align: center;
+    }
   }
 }
 .logoContainer {
