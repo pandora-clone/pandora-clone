@@ -18,12 +18,6 @@ class SideNavBar extends Component {
           </Link>
           <div className="navItemsContainer">
             {/* <button className="sideNavItems">Playlists</button> */}
-<<<<<<< HEAD
-            <Link to="/artists" className="sideNavItems">Artists</Link>
-            <Link to="/albums" className="sideNavItems">Albums</Link>
-            <Link to="/songs" className="sideNavItems">Songs</Link>
-            <Link to="/usersongs" className="sideNavItems">New Uploads</Link>
-=======
             <Link to="/artists" className="sideNavItems">
               Artists
             </Link>
@@ -36,7 +30,6 @@ class SideNavBar extends Component {
             <Link to="/usersongs" className="sideNavItems">
               New Uploads
             </Link>
->>>>>>> master
           </div>
         </div>
       </div>
