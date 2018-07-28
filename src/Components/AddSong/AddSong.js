@@ -5,7 +5,6 @@ import { database, storage } from "../../firebase/firebase";
 import availableCategories from "./availableCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faMusic } from "@fortawesome/free-solid-svg-icons";
-import { Link, Route, Redirect } from "react-router-dom";
 
 const spotifyApi = new SpotifyWebApi();
 
